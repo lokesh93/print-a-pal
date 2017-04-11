@@ -1,0 +1,53 @@
+<%= form_for(@bezier_curf) do |f| %>
+  <% if @bezier_curf.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bezier_curf.errors.count, "error") %> prohibited this bezier_curf from being saved:</h2>
+
+      <ul>
+      <% @bezier_curf.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :cp1_x %><br>
+    <%= f.number_field :cp1_x %>
+  </div>
+  <div class="field">
+    <%= f.label :cp1_y %><br>
+    <%= f.number_field :cp1_y %>
+  </div>
+  <div class="field">
+    <%= f.label :cp2_x %><br>
+    <%= f.number_field :cp2_x %>
+  </div>
+  <div class="field">
+    <%= f.label :cp2_y %><br>
+    <%= f.number_field :cp2_y %>
+  </div>
+  <div class="field">
+    <%= f.label :sp_x %><br>
+    <%= f.number_field :sp_x %>
+  </div>
+  <div class="field">
+    <%= f.label :sp_y %><br>
+    <%= f.number_field :sp_y %>
+  </div>
+  <div class="field">
+    <%= f.label :ep_x %><br>
+    <%= f.number_field :ep_x %>
+  </div>
+  <div class="field">
+    <%= f.label :ep_y %><br>
+    <%= f.number_field :ep_y %>
+  </div>
+  <div class="field">
+    <%= f.label :draw_id %><br>
+    <%= f.number_field :draw_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

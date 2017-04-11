@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :bezier_curves
   resources :drawings
   resources :draws
   # The priority is based upon order of creation: first created -> highest priority.
@@ -14,6 +15,8 @@ Rails.application.routes.draw do
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
+
+  post '/save_curves' => 'bezier_curves#update_drawing'
 
 
   # Example of regular route:
