@@ -1,29 +1,32 @@
 <style>
 			body { margin: 0; }
-			canvas { width: 40%; height: 400px }
-			#canvas{
+			canvas { width: 100%; height: 400px;  border-style: solid; border-radius: 20px; padding: 3%; }
+/*			canvas{
 				    border-style: solid;
 				    border-radius: 20px;
 				    width: 100%;
 				    height: 400px;
-			}
+			}*/
 			#title{
 				text-align: left;
 				font-family: helvetica;
+				text-align: center;
 			}
 			#draw-mode{
 				text-align: left;
 				font-family: helvetica;
 			}
 			.draw-buttons{
-				text-align: left;
+				text-align: center;
 			}
 			.fa{
 				margin: 0px 15px;
 			}
-			.draw-portion{
+			.draw-portion, .three-portion{
 				width: 40%;
 				display: inline-block;
+				padding: 5%;
+
 			}
 </style>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -31,21 +34,27 @@
 <p id="notice"><%= notice %>
 
 </p>
+<div id="title"><h1>PRINT A PAL</h1></div>
 <div class="draw-portion">
-	<div id="title"><h1>PRINT A PAL</h1></div>
 	
 	<canvas id="canvas" width="400" height="400"></canvas>
-		<div class="draw-buttons">
-			<!-- <i class="fa fa-pencil fa-3x pencil-button" aria-hidden="true"></i>
-			<i class="fa fa-circle-thin fa-3x circle-button" aria-hidden="true"></i> -->
-			<i class="fa fa-minus fa-3x create-b-curve" aria-hidden="true"></i>
-			<i class="fa fa-check fa-3x create-shape" aria-hidden="true"></i>
-			<i class="fa fa-edit fa-3x manipulate-shape" aria-hidden="true"></i>
-			<i class="fa fa-plug fa-3x con-b-curve" aria-hidden="true"></i>
-			<i class="fa fa-eraser fa-3x clear-screen" aria-hidden="true"></i>
-			<i class="fa fa-download  fa-3x download-stl" aria-hidden="true"></i>
-			<i class="fa fa-floppy-o fa-3x save-curves" aria-hidden="true"></i>
+		
 
+</div>
+
+<div class="three-portion">
+	
+		
+
+</div>
+<div class="draw-buttons">
+	<i class="fa fa-minus fa-3x create-b-curve" aria-hidden="true"></i>
+	<i class="fa fa-check fa-3x create-shape" aria-hidden="true"></i>
+	<i class="fa fa-edit fa-3x manipulate-shape" aria-hidden="true"></i>
+	<i class="fa fa-plug fa-3x con-b-curve" aria-hidden="true"></i>
+	<i class="fa fa-eraser fa-3x clear-screen" aria-hidden="true"></i>
+	<i class="fa fa-download  fa-3x download-stl" aria-hidden="true"></i>
+	<i class="fa fa-floppy-o fa-3x save-curves" aria-hidden="true"></i>
 </div>
 
 
@@ -68,7 +77,7 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth*0.4, window.innerHeight*0.6 );
 console.log("inner width: "+ window.innerWidth);
 console.log("inner height: "+ window.innerHeight);
-document.body.appendChild( renderer.domElement );
+document.body.children[7].appendChild( renderer.domElement );
 
 var handle_selected = false;
 var current_handle;
@@ -107,8 +116,11 @@ function createHeartShape(shape_array) {
 
 	var newShape = new THREE.Shape();
 
-	newShape.moveTo(shape_array[0].sp_x, shape_array[0].sp_x)
+	//newShape.moveTo(shape_array[0].sp_x, shape_array[0].sp_x)
 	for (var i=0;i<shape_array.length;i++){
+		if (i ==0){
+          newShape.moveTo(shape_array[i].sp_x, shape_array[i].sp_y);
+        }
 		newShape.bezierCurveTo(shape_array[i].cp1_x, shape_array[i].cp1_y, shape_array[i].cp2_x, shape_array[i].cp2_y, shape_array[i].ep_x,shape_array[i].ep_y);
 	}
 
@@ -353,61 +365,6 @@ function returnBezCurveIndex(posX, posY){
   return curveinfo;
 }
 
-function createShape(){
-  if (shape_array.length <= 0){
-    var create_curve = new BezierCurve(20, 100, 200, 100, 20, 20, 200, 20);
-    create_curve.initialize();
-    shape_array.push(create_curve);
-  }
-}
-
-function addEdge(pos_x, pos_y){
-  var last_curve_index = shape_array.length - 1;
-  src_x = shape_array[last_curve_index].ep_x; 
-  src_y = shape_array[last_curve_index].ep_y; 
-  dst_x = pos_x;
-  dst_y = pos_y;
-  mid_x = (dst_x + src_x)/2;
-  mid_y = (dst_y + src_y)/2;
-  cp1_x = (src_x + mid_x)/2;
-  cp1_y = (src_y + mid_y)/2;
-  cp2_x = (mid_x + dst_x)/2;
-  cp2_y = (mid_y + dst_y)/2;
-  var create_curve = new BezierCurve(cp1_x, cp1_y, cp2_x, cp2_y, -1, -1, dst_x, dst_y);
-  shape_array.push(create_curve);
-}
-
-function testHeart(){
-  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clears the canvas
-  ctx.beginPath();
-  ctx.moveTo(182,84);
-  ctx.bezierCurveTo(71,82,138,178,238,188);
-  ctx.bezierCurveTo(320,85,236,9,182,84);
-  ctx.stroke();
-}
-
-
-function testShape(){
-  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clears the canvas
-  ctx.beginPath();
-  ctx.moveTo(83,196);
-  ctx.bezierCurveTo(111,275,221,242,220,157);
-  ctx.bezierCurveTo(114,46,50,72,83,196);
-  ctx.stroke();
-}
-
-function testShape2(){
-  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clears the canvas
-  ctx.beginPath();
-  ctx.moveTo(61,88);
-  ctx.bezierCurveTo(111,81,261,57,292,84);
-  ctx.bezierCurveTo(298,112,313,183,332,221);
-  ctx.bezierCurveTo(396,242,363,211,452,285);
-  ctx.bezierCurveTo(324,331,356,311,275,276);
-  ctx.bezierCurveTo(199,265,124,266,49,291);
-  ctx.bezierCurveTo(37,219,41,136,61,88);
-  ctx.stroke();
-}
 
 
 function makeShape(){
@@ -470,10 +427,17 @@ function saveSTL( scene, name ){
 
 function saveBCurves(){
 	var b_cs = new Array()
-	for (var i=0;i<b_curves.length;i++){
-		var bc_to_json = {cp1_x: b_curves[i].cp1_x, cp1_y: b_curves[i].cp1_y, cp2_x: b_curves[i].cp2_x, cp2_y: b_curves[i].cp2_y, sp_x: b_curves[i].sp_x, sp_y: b_curves[i].sp_y, ep_x: b_curves[i].ep_x,  ep_y: b_curves[i].ep_y, draw_id: <%=@drawing.id%>}
+	if (b_curves.length == 0){
+		var bc_to_json = {cp1_x: -1, cp1_y: -1, cp2_x: -1, cp2_y: -1, sp_x: -1, sp_y: -1, ep_x: -1,  ep_y: -1, draw_id: <%=@drawing.id%>}
 		b_cs.push(bc_to_json);
+	} else {
+		for (var i=0;i<b_curves.length;i++){
+			var bc_to_json = {cp1_x: b_curves[i].cp1_x, cp1_y: b_curves[i].cp1_y, cp2_x: b_curves[i].cp2_x, cp2_y: b_curves[i].cp2_y, sp_x: b_curves[i].sp_x, sp_y: b_curves[i].sp_y, ep_x: b_curves[i].ep_x,  ep_y: b_curves[i].ep_y, draw_id: <%=@drawing.id%>}
+			b_cs.push(bc_to_json);
+		}
+
 	}
+	
 	$.ajax({
 	  type: "POST",
 	  data: {curves:b_cs},
@@ -526,13 +490,7 @@ $('#canvas').mousedown(function(e){
       connect_2_selected = false;
     }
 
-    // else if (create_shape == true && add_edge == false) {
-    //   createShape();
-    // }
 
-    // else if (create_shape == true && add_edge == true) {
-    //   addEdge(curr_posX, curr_posY);
-    // }
     
 });
 
@@ -586,7 +544,10 @@ $('.create-shape').click(function() {
     manipulate_shape = false;
 
     makeShape();
-    createHeartShape(shape_array);
+    if (shape_connected){
+    	createHeartShape(shape_array);
+    }
+    
     redraw(true);
   } 
   changeIconColour(this,create_shape);
