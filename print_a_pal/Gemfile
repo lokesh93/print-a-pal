@@ -38,6 +38,12 @@ gem 'filesaverjs-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'pg'
+end
+
+group :production do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'pg'
 end
 
 group :development do
