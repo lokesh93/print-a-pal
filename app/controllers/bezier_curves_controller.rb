@@ -85,19 +85,21 @@ class BezierCurvesController < ApplicationController
       end
     end
 
-    for i in 0..params[:curves].length-1
-      b_curf = BezierCurve.new
+    if params[:curves]["0"][:cp1_x].to_i != -1
+      for i in 0..params[:curves].length-1
+        b_curf = BezierCurve.new
 
-      b_curf.cp1_x = params[:curves][i.to_s][:cp1_x]
-      b_curf.cp1_y = params[:curves][i.to_s][:cp1_y]
-      b_curf.cp2_x = params[:curves][i.to_s][:cp2_x]
-      b_curf.cp2_y = params[:curves][i.to_s][:cp2_y]
-      b_curf.sp_x = params[:curves][i.to_s][:sp_x]
-      b_curf.sp_y = params[:curves][i.to_s][:sp_y]
-      b_curf.ep_x = params[:curves][i.to_s][:ep_x]
-      b_curf.ep_y = params[:curves][i.to_s][:ep_y]
-      b_curf.draw_id = params[:curves][i.to_s][:draw_id]
-      b_curf.save
+        b_curf.cp1_x = params[:curves][i.to_s][:cp1_x]
+        b_curf.cp1_y = params[:curves][i.to_s][:cp1_y]
+        b_curf.cp2_x = params[:curves][i.to_s][:cp2_x]
+        b_curf.cp2_y = params[:curves][i.to_s][:cp2_y]
+        b_curf.sp_x = params[:curves][i.to_s][:sp_x]
+        b_curf.sp_y = params[:curves][i.to_s][:sp_y]
+        b_curf.ep_x = params[:curves][i.to_s][:ep_x]
+        b_curf.ep_y = params[:curves][i.to_s][:ep_y]
+        b_curf.draw_id = params[:curves][i.to_s][:draw_id]
+        b_curf.save
+      end
     end
 
     
