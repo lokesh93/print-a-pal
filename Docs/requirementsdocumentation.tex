@@ -1,0 +1,195 @@
+\documentclass{report}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=black]{hyperref}
+
+% Specify bibliography package
+\usepackage{natbib}
+
+
+
+\title{Print-A-Pal \linebreak Requirements Documentation}
+\author{MD Rashad \& Lokesh Podipireddy}
+\date{2017}
+
+
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+
+% For each day of class, you will have a new chapter
+\chapter{Revision History}
+\subsubsection{Revision 0}
+First draft of requirements documentation completed.
+\subsubsection{Revision 1} Updated requirements.
+\subsubsection{Revision 2} Restructured document according to more samples.
+
+\chapter{Project Drivers}
+% You should have one section per assigned reading
+\section{Purpose Of Project}
+The purpose for this project is to create a user friendly drawing application that would let users easily create 3D physical toys out of 2D drawn ideas.  3D modeling environments are generally too difficult to use for an average untrained adult, let alone for children.  The software software application will be a web based program that lets kids draw a 2D shape or creature that will undergo a conversion process to print into a 3D mesh which can be 3D printed as a physical toy.  Emphasis will be placed on allowing as much user creativity as possible, while not being limited by lack of knowledge or formal training of 3D software.
+ 
+\section{Stakeholders}
+The clients are children who wish to design a toy for themselves.  The customers are their parents or guardians wishing to create an account where children can use this software.  Other stakeholders include :
+\begin{itemize}
+\item Team members of Print-A-Pal and supervisor Wenbo He
+\item Educational institutions that wish to host this software for students to use
+\item Other 3D design or printing softwares that wish to incorporate our features
+\end{itemize}
+
+\chapter{Project Constraints}
+\section{Mandated Constraints}
+The global constraints of this software depend on the stakeholders and the 4ZP6 course.  The product must be completed by the end of April 2017.  Additionally, the product must also be functional on the most common web browsers (Chrome and Safari) and work appropriately with the installable web libraries. Interactions with the software must be visible and usable. 
+\section{Assumptions and dependencies}
+Users will be children ranging from age 5 to 10, using the computer to the best of their abilities with adult supervision.  Users will have access to the internet using the available web browsers.
+
+\chapter{Functional Requirements}
+\section{Scope of Work}
+To print an object in 3D requires a certain level of knowledge and understanding of 3D software and modeling. 3D modeling softwares incorporate multiple angles, tools to create and modify shapes and a plethora of other in depth 3D design techniques which are generally far too difficult for children to use.  Our product will provide a creative 2D environment for children to envision and create 3D objects
+\section{Scope of Product}
+The product will be used by children wishing to create 3D objects.  The users will create a 2D design, check and modify the 3D parameters, and submit their 3D mesh rendering for 3D printing.
+\section{Functional Requirements}
+\subsection{Requirement \#: 1}
+Description: Product shall keep password database encrypted
+\\Rationale: To protect accounts from unauthorized access.
+\\Fit Criterion: The database should only show information to the appropriate users.
+\\Priority: Very high
+\subsection{Requirement \#: 2}
+Description: The user should be able to access and use their account with the application. 
+\\Rationale:  To allow users to view and modify their respective projects.
+\\Fit Criterion: Users will only have access to accounts using their username and password.
+\\Priority: High
+\subsection{Requirement \#: 3}
+Description: Product should display canvas feedback appropriately.
+\\Rationale:  Design and usability are impossible to use without visualization.
+\\Fit Criterion:  Product should accurately display and reflect shapes and options on canvas.
+\\Priority: Very high
+\subsection{Requirement \#: 4}
+Description: 2D designs must accurately render into 3D mesh 
+\\Rationale: To accurately define 3D shape depending on what user intended. 
+\\Fit Criterion: Rendering and 2D to 3D transformation will be seamless and cohesive.
+\\Priority: High
+\subsection{Requirement \#: 5}
+Description: Users must be able to save and access old projects 
+\\Rationale: To allow users to come back to projects and work on them later or modify them after previous versions.
+\\Fit Criterion: Each account will have it's respective list of projects and allow users to save new ones.
+\\Priority: Medium
+
+\chapter{Non-functional Requirements}
+\section{Look and Feel Requirements}
+The interface should be easy to use for children and provide an intuitive design.  Controls should be simple and clearly visible and design appearance should feel seamless. 
+\section{Usability and Humanity Requirements}
+The product shall be used by children who will receive minimal instruction before operation.  Labels for controls and available actions should be labeled appropriately in an understandable fashion, with simple English and associated pictures to illustrate. The product should help users create and use their accounts, and also how to create projects and save them.  
+\section{Performance Requirements}
+\subsection{Speed and Latency Requirements}
+The software shall render shapes on canvas in time with tool inputs and transform into 3D rendering simultaneously.
+\subsection{Safety-Critical Requirements}
+The software is not used in safety-critical environments.  It is used by users on a secure website.
+\subsection{Precision or Accuracy Requirements}
+3D rendering should accurately reflect 2D design and shape orientation.  
+\subsection{Reliability and Availability Requirements}
+The product should work properly on appropriate web browsers and display everything on the website accordingly.  Tool functions should work according to intended use.
+\subsection{Robustness or Fault-Tolerance Requirements}
+If incorrect account information is entered, users will be directed to enter correct information to access their account.  There isn't any other case for errors in user inputs.
+\subsection{Capacity Requirements}
+The product shall be used by a single user on a computer.
+\subsection{Scalability or Extensibility Requirements}
+This product is for one machine and does not involve any scalable options.
+\subsection{Longevity Requirements}
+The product is to be completed by April 2017.  Plans to extend the product after deadline may be discussed between core group members.
+
+\section{Operational and Environmental Requirements}
+The product will work with Google Chrome and Safari, with WebGL installed on the browser.  The software must be able to produce a 3D printable file in the appropriate file format.
+\section{Maintainability and Support Requirements}
+\subsection{Maintenance Requirements}
+The software code will be provided and clearly commented, so it can be maintained by anyone.  Maintenance after release will depend on who carries on the product.
+\subsection{Supportability Requirements}
+The product's documentation and code comments allow for future support if necessary.
+\subsection{Adaptability Requirements}
+The software will be used with WebGL on Chrome or Safari with a secure internet connection.
+\section{Security Requirements}
+\subsection{Access Requirements}
+All users will have access to the product as long as they log in with their respective user information.
+\subsection{Integrity Requirements}
+User accounts and projects shall be secured and protected.
+\subsection{Privacy Requirements}
+The product shall not reveal any projects or account information without the correct user information.
+\subsection{Audit Requirements}
+Does not apply to this software for any particular audits.
+\subsection{Immunity Requirements}
+Does not apply to this software for immunity features.
+\section{Cultural Requirements}
+Culturally this software should be child friendly and appropriate for everybody to use.
+\section{Legal Requirements}
+User accounts and project orders shall be protected and secured according to specific user information, and should not be available to anybody outside of the user and the manufacturer.
+
+\chapter{Project Issues}
+\section{Open Issues}
+\begin{itemize}
+\item Creating a web based application that can do that amount of rendering and display will be difficult.
+\item Currently there is no drawing application that lets users design in 2D but create in 3D.
+\end{itemize}
+\section{Off-the-shelf Solutions}
+Off the shelf solutions may include the several 3D modeling softwares available for a long period of time, but they all take a considerable amount of background knowledge to actually use the software to create something they want.  There exists a three.js documentation describing 3D to 3D printable parsing.  No solutions for 2D to 3D rendering has been implemented and distributed.
+\section{New Problem}
+Although the software runs on web browsers, the functionality of the application should not interfere with the speed or usability of the browser.
+\section{Tasks}
+\begin{itemize}
+\item Provide proposed project and problem statement
+\item Create requirements document
+\item Create test plan
+\item Make design document
+\item Make User Guide
+\item Write test report
+\item Compile final documentation
+\end{itemize}
+\section{Migration to New Product}
+Does not apply to this software.
+
+\section{Risks}
+\begin{itemize}
+\item If user information database is hacked, users' projects may be compromised which would be a critical problem for them.
+\item If the user does not have enough memory or resources the application may make the browser slow or potentially crash.
+\end{itemize}
+
+\section{Costs}
+There are no monetary costs associated with our software other than the individual orders for the 3D printed objects.
+\section{User Document and Training}
+User manual will be provided with documentation, but the software should be easy enough to use without any previous knowledge or understanding.  The tools and options should be well defined and clear so users will understand what they are able to do.
+\section{Waiting Room}
+\begin{itemize}
+\item In the future, implementations in more browsers such as Firefox and Edge would be a great addition.  
+\item Perhaps clients working on this project could find a good way to implement colour and different surface designs.
+\end{itemize}
+\section{Ideas for Solutions}
+If problems arise, the User Manual defines clearly what options are available to the user and what functions achieve the intended uses.  The manual highlights what browsers and extensions are needed for the product.  The code is also very cohesive and well documented in case there is a program error and it needs to be tweaked.  
+
+ 
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
