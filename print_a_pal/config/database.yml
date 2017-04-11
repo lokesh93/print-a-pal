@@ -32,5 +32,5 @@ production:
   encoding: utf8
   database: print_production
   pool: 5
-  username: root
-  password: 
+  username: b1f6868a81e7d0
+  password: f9c792f7
