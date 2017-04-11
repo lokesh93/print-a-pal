@@ -31,6 +31,7 @@ production:
   adapter: mysql2
   encoding: utf8
   database: print_production
+  host: mysql2://b1f6868a81e7d0:f9c792f7@us-cdbr-iron-east-03.cleardb.net/heroku_2962cf873488393?reconnect=true
   pool: 5
   username: b1f6868a81e7d0
   password: f9c792f7
