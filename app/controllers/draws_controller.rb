@@ -1,10 +1,12 @@
 class DrawsController < ApplicationController
   before_action :set_draw, only: [:show, :edit, :update, :destroy]
 
+  before_filter :authorize
+
   # GET /draws
   # GET /draws.json
   def index
-    @draws = Draw.all
+    @draws = Draw.where(user_id: @current_user.id)
   end
 
   # GET /draws/1
@@ -25,6 +27,7 @@ class DrawsController < ApplicationController
   # POST /draws.json
   def create
     @draw = Draw.new(draw_params)
+    @draw.user_id = @current_user.id
 
     respond_to do |format|
       if @draw.save
