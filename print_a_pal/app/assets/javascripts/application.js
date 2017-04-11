@@ -10,9 +10,12 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
+//= require FileSaver
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
 //= require three
+//= require STLExporter
 //= require_tree .
 
