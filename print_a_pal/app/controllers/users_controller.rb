@@ -14,7 +14,13 @@
 
   # GET /users/new
   def new
-    @user = User.new
+    if current_user
+      respond_to do |format|
+        format.html { redirect_to '/', error: "Already signed up" }
+      end
+    else
+      @user = User.new
+    end
   end
 
   # GET /users/1/edit
