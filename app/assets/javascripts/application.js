@@ -12,6 +12,7 @@
 //
 
 //= require FileSaver
+//= require Orbitcontrols
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
