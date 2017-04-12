@@ -80,7 +80,6 @@
 	<i class="fa fa-floppy-o fa-3x save-curves" aria-hidden="true"></i>
 	<i class="fa fa-arrow-down fa-3x depth-down" aria-hidden="true"></i>
 	<i class="fa fa-arrow-up fa-3x depth-up" aria-hidden="true"></i>
-	<i class="fa fa-tint fa-3x material" aria-hidden="true"></i>
 </div>
 
 
@@ -164,23 +163,23 @@ function createHeartShape(shape_array) {
 	
 
 	var geometry = new THREE.ExtrudeGeometry( newShape, extrudeSettings );
-	if (wire_frame == true) {
+	// if (wire_frame == true) {
 		var material = new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe: true } );
-	} else {
+	// } else {
 
-		var materialFront = new THREE.MeshLambertMaterial({
-	    color: 0xffff00,
-	    ambient: 0xffff00
-		});
+	// 	var materialFront = new THREE.MeshLambertMaterial({
+	//     color: 0xffff00,
+	//     ambient: 0xffff00
+	// 	});
 
-		var materialSide = new THREE.MeshLambertMaterial({
-		    color: 0xff8800,
-		    ambient: 0xff8800
-		});
+	// 	var materialSide = new THREE.MeshLambertMaterial({
+	// 	    color: 0xff8800,
+	// 	    ambient: 0xff8800
+	// 	});
 
-		var materials = [ materialFront, materialSide ];
-		var material = new THREE.MeshFaceMaterial( materials );
-	}
+	// 	var materials = [ materialFront, materialSide ];
+	// 	var material = new THREE.MeshFaceMaterial( materials );
+	// }
 	
 	mesh = new THREE.Mesh( geometry, material ) ;
 	scene.add( mesh );
