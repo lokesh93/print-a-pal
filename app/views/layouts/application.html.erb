@@ -20,12 +20,15 @@
 
 <!-- # added these lines. -->
 <% if current_user %>
-  Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
+  Signed in as <%= current_user.name %>  <h4 style="float:right;"><%= link_to "Logout", '/logout' %></h4>
 
 <% else %>
   <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
 <% end %>
 
+<% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: name %>
+    <% end %>
  <%= yield %>
 
 

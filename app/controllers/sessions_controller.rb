@@ -1,6 +1,11 @@
 class SessionsController < ApplicationController
 
 	def new 
+		if current_user
+			respond_to do |format|
+				format.html { redirect_to '/', error: "Already signed up" }
+			end
+		end
 	end
 
 	def create
