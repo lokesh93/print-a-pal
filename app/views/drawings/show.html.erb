@@ -72,7 +72,7 @@ var screen_width = window.innerWidth*0.4;
 var screen_length = window.innerHeight*0.6; 
 
 var renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth*0.4, window.innerHeight*0.6 );
+renderer.setSize( window.innerWidth*0.4, 400 );
 console.log("inner width: "+ window.innerWidth);
 console.log("inner height: "+ window.innerHeight);
 document.body.children[7].appendChild( renderer.domElement );
@@ -146,7 +146,7 @@ var render = function () {
 	requestAnimationFrame( render );
 
 	if (mesh != undefined) {
-		mesh.rotation.y += 0.02;	
+		mesh.rotation.y += 0.01;	
 	}
 
 				// cube.position.x += 0.001;
