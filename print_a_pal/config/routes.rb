@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
+  resources :bezier_curves
   resources :drawings
   resources :draws
+  resources :homes
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'home#index'
 
   # these routes are for showing users a login form, logging them in, and logging them out.
   get '/login' => 'sessions#new'
@@ -14,6 +16,9 @@ Rails.application.routes.draw do
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
+
+  post '/save_curves' => 'bezier_curves#update_drawing'
+  get '/draw_home' => 'drawings#new'
 
 
   # Example of regular route:

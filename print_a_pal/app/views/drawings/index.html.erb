@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Drawings</h1>
+<h1 style="text-align:center">Listing Drawings</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>User</th>
@@ -15,13 +15,14 @@
       <tr>
         <td><%= drawing.user_id %></td>
         <td><%= link_to 'Show', drawing %></td>
-        <td><%= link_to 'Edit', edit_drawing_path(drawing) %></td>
-        <td><%= link_to 'Destroy', drawing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', drawing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= drawing.id %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+<div style="text-align:center;font-size:24px;"> 
 <%= link_to 'New Drawing', new_drawing_path %>
+</div>

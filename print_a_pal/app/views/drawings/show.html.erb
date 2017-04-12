@@ -1,29 +1,32 @@
 <style>
 			body { margin: 0; }
-			canvas { width: 40%; height: 400px }
-			#canvas{
+			canvas { width: 100%; height: 400px;  border-style: solid; border-radius: 20px; }
+/*			canvas{
 				    border-style: solid;
 				    border-radius: 20px;
 				    width: 100%;
 				    height: 400px;
-			}
+			}*/
 			#title{
 				text-align: left;
 				font-family: helvetica;
+				text-align: center;
 			}
 			#draw-mode{
 				text-align: left;
 				font-family: helvetica;
 			}
 			.draw-buttons{
-				text-align: left;
+				text-align: center;
 			}
 			.fa{
 				margin: 0px 15px;
 			}
-			.draw-portion{
+			.draw-portion, .three-portion{
 				width: 40%;
 				display: inline-block;
+				padding: 5%;
+
 			}
 </style>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -31,438 +34,33 @@
 <p id="notice"><%= notice %>
 
 </p>
+<div id="title"><h1>PRINT A PAL</h1></div>
 <div class="draw-portion">
-	<div id="title"><h1>PRINT A PAL</h1></div>
-	<!-- <div id="draw-mode" style="text-align: left">
-		<select>
-			<option value="volvo">FRONT VIEW</option>
-			<option value="saab">SIDE VIEW</option>
-			 <option value="opel">ANNGLED VIEW</option>
-		</select>
-	</div> -->
+	
 	<canvas id="canvas" width="400" height="400"></canvas>
-		<div class="draw-buttons">
-			<!-- <i class="fa fa-pencil fa-3x pencil-button" aria-hidden="true"></i>
-			<i class="fa fa-circle-thin fa-3x circle-button" aria-hidden="true"></i> -->
-			<i class="fa fa-minus fa-3x create-b-curve" aria-hidden="true"></i>
-			<i class="fa fa-check fa-3x create-shape" aria-hidden="true"></i>
-			<i class="fa fa-edit fa-3x manipulate-shape" aria-hidden="true"></i>
-			<i class="fa fa-plug fa-3x con-b-curve" aria-hidden="true"></i>
-			<i class="fa fa-eraser fa-3x clear-screen" aria-hidden="true"></i>
-			<i class="fa fa-download  fa-3x download-stl" aria-hidden="true"></i>
+		
+
+</div>
+
+<div class="three-portion">
+	
+		
+
+</div>
+<div class="draw-buttons">
+	<i class="fa fa-minus fa-3x create-b-curve" aria-hidden="true"></i>
+	<i class="fa fa-check fa-3x create-shape" aria-hidden="true"></i>
+	<i class="fa fa-edit fa-3x manipulate-shape" aria-hidden="true"></i>
+	<i class="fa fa-plug fa-3x con-b-curve" aria-hidden="true"></i>
+	<i class="fa fa-eraser fa-3x clear-screen" aria-hidden="true"></i>
+	<i class="fa fa-download  fa-3x download-stl" aria-hidden="true"></i>
+	<i class="fa fa-floppy-o fa-3x save-curves" aria-hidden="true"></i>
 </div>
 
 
-<%= link_to 'Edit', edit_draw_path(@drawing) %> |
-<%= link_to 'Back', drawings_path %>
+<
 
-		<script>
-			
-		</script>
 
-		 <script>
-
-
-		// 	// event handler for when pencil button is pushed
-		// 	$(".pencil-button").click(function() {
-		// 		draw_circle = false; // turn all other buttons
-		// 		draw_square = false;
-		// 		draw_line = false;
-		// 		// if pencil is on then turn it off and change colour
-		// 		if (draw_pencil){
-		// 			draw_pencil = false; 
-		// 			$(".pencil-button").css("color","black");
-		// 		} 
-		// 		// if pencil is off then turn it on and change colour
-		// 		else {
-
-		// 			draw_pencil = true;
-		// 			$(".pencil-button").css("color","blue");
-		// 		}
-				
-
-		// 	});
-
-		// 	// event handler for when circle button is pushed
-		// 	$(".circle-button").click(function() {
-		// 		// turn all other buttons
-		// 		draw_pencil = false;
-		// 		draw_square = false;
-		// 		draw_line = false;
-		// 		// if pencil is off then turn it on and change colour
-		// 		if (draw_circle){
-		// 			draw_circle = false;
-		// 			$(".circle-button").css("color","black");
-		// 		}
-		// 		// if circle is off then turn it on and change colour
-		// 		 else {
-		// 			draw_circle = true;
-		// 			$(".circle-button").css("color","blue");
-		// 		}
-				
-
-		// 	});
-
-		// 	$('.add-ellipse').click(function () {
-		// 		var canvas = document.getElementById('canvas');
-		// 		var ctx = canvas.getContext('2d');
-
-		// 		ctx.beginPath();
-		// 		ctx.ellipse(100, 100, 50, 75, 135 * Math.PI/180, 0, 2 * Math.PI);
-		// 		ctx.stroke();
-		// 	})
-
-		// 	$('.add-oval').click(function () {
-		// 		// turn all other buttons
-		// 		draw_pencil = false;
-		// 		draw_square = false;
-		// 		draw_line = false;
-		// 		draw_oval = true;
-		// 	})
-
-		// 	// event handler for when line button is pushed
-		// 	$(".line-button").click(function() {
-		// 		// turn all other buttons
-		// 		draw_pencil = false;
-		// 		draw_circle = false;
-		// 		draw_square = false;
-		// 		// if line is off then turn it on and change colour
-		// 		if (draw_line){
-		// 			draw_line = false;
-		// 			$(".line-button").css("color","black");
-		// 		}
-		// 		// if line is off then turn it on and change colour
-		// 		 else {
-		// 			draw_line = true;
-		// 			$(".line-button").css("color","blue");
-		// 		}
-
-
-				
-
-		// 	});
-
-		// 	// event handler for when line button is pushed
-		// 	$(".square-button").click(function() {
-		// 		// turn all other buttons
-		// 		draw_pencil = false;
-		// 		draw_circle = false;
-		// 		draw_line = false;
-		// 		// if line is off then turn it on and change colour
-		// 		if (draw_square){
-		// 			draw_square = false;
-		// 			$(".square-button").css("color","black");
-		// 		}
-		// 		// if square is off then turn it on and change colour
-		// 		 else {
-		// 			draw_square = true;
-		// 			$(".square-button").css("color","blue");
-		// 		}
-				
-
-		// 	});
-
-
-
-
-
-
-		// 	// event handle for when the mouse is pressed
-		// 	$('#canvas').mousedown(function(e){
-		// 		// get the current mouse coords
-		// 	  var mouseX = e.pageX - this.offsetLeft;
-		// 	  var mouseY = e.pageY - this.offsetTop;
-				
-		// 	  paint = true;
-		// 	  // if the pencil tool is on then record the click and go to draw function for pencil
-		// 	  if (draw_pencil){
-		// 	  	addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, draw_pencil);
-		// 	  	redraw(draw_pencil, draw_circle);
-		// 	  }
-		// 	  // if the circle tool is on then record the click and go to draw function for circle
-		// 	  if (draw_circle){
-		// 	  	//addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, draw_circle);
-		// 	  	addClickCircle(e.pageX - this.offsetLeft, e.pageY - this.offsetTop)
-		// 	  	// redraw(draw_pencil, draw_circle);
-		// 	  	redrawNewCircle(e.pageX - this.offsetLeft, e.pageY - this.offsetTop)
-		// 	  }
-		// 	  // if the line tool is on then record the click and go to draw function for circle
-		// 	  if (draw_line){
-		// 	  	//addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, draw_circle);
-		// 	  	addClickLine(e.pageX - this.offsetLeft, e.pageY - this.offsetTop)
-		// 	  	// redraw(draw_pencil, draw_circle);
-		// 	  	drawNewLine(e.pageX - this.offsetLeft, e.pageY - this.offsetTop)
-		// 	  }
-
-		// 	  // if the square tool is on then record the click and go to draw function for square
-		// 	  if (draw_square){
-		// 	  	//addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, draw_circle);
-		// 	  	addClickSquare(e.pageX - this.offsetLeft, e.pageY - this.offsetTop)
-		// 	  	// redraw(draw_pencil, draw_circle);
-		// 	  	drawNewSquare(e.pageX - this.offsetLeft, e.pageY - this.offsetTop)
-		// 	  }
-
-		// 	  // if the line tool is on then record the click and go to draw function for circle
-		// 	  if (draw_oval){
-		// 	  	//addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, draw_circle);
-		// 	  	addClickOval(e.pageX - this.offsetLeft, e.pageY - this.offsetTop)
-		// 	  	// redraw(draw_pencil, draw_circle);
-		// 	  }
-
-		// 	});
-
-			
-		// 	// event handler for when the mouse moves
-		// 	$('#canvas').mousemove(function(e){
-		// 	// record the click with dragging turned on and go to draw draw function for pencil
-		// 	  if(paint && draw_pencil){
-		// 	    addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, draw_pencil ,true);
-		// 	    redraw(draw_pencil, draw_circle);
-
-		// 	  }
-		// 	 // go to draw circle function
-		// 	  if (paint && draw_circle) {
-		// 	  	redrawNewCircle(e.pageX - this.offsetLeft, e.pageY - this.offsetTop)
-		// 	  }
-
-		// 	  // go to draw circle function
-		// 	  if (paint && draw_line) {
-		// 	  	drawNewLine(e.pageX - this.offsetLeft, e.pageY - this.offsetTop)
-		// 	  }
-
-		// 	  // go to draw circle function
-		// 	  if (paint && draw_square) {
-		// 	  	drawNewSquare(e.pageX - this.offsetLeft, e.pageY - this.offsetTop)
-		// 	  }
-
-		// 	});
-
-		// 	// event handler when the mouse button is released and turns off drawing
-		// 	$('#canvas').mouseup(function(e){
-		// 	  paint = false;
-		// 	  var mouseX = e.pageX - this.offsetLeft;
-		// 	  var mouseY = e.pageY - this.offsetTop;
-		// 	  var lengthofArr = circleClickX.length;
-		// 	  if (draw_circle){
-		// 	  	var lengthofArr = circleClickX.length;
-		// 	  	rad = Math.sqrt(Math.pow((circleClickX[lengthofArr - 1] - mouseX),2) + Math.pow((circleClickY[lengthofArr - 1] - mouseY),2))
-		// 	  	radius.push(rad)
-		// 	  }
-
-		// 	  if (draw_line){
-		// 	  	lineClickX.push(mouseX);
-		// 	  	lineClickY.push(mouseY);
-		// 	  }
-		// 	  if (draw_square){
-		// 	  	var lengthofArr = squareClickX.length;
-		// 	  	squareWidth.push(mouseX - squareClickX[lengthofArr - 1])
-		// 	  	squareHeight.push(mouseY - squareClickY[lengthofArr - 1])
-		// 	  	squareClickY.push(mouseY);
-		// 	  }
-		// 	  redraw(true);
-		// 	});
-
-		// 	// event handler when the mouse leaves the canvas and turns off drawing
-		// 	$('#canvas').mouseleave(function(e){
-		// 	  paint = false;
-		// 	  redraw(true);
-		// 	  // draw_circle = false;
-		// 	  // draw_pencil = false;
-		// 	});
-
-
-		// 	// records the click in a click X and Y array
-		// 	function addClick(x, y, doPaint, dragging)
-		// 	{
-		// 		if (doPaint && !draw_circle){
-		// 			clickX.push(x);
-		// 	  		clickY.push(y);
-		// 	  		clickDrag.push(dragging);
-		// 		}
-		// 		if (draw_circle){
-		// 			circleClickX.push(x);
-		// 			circleClickY.push(y);
-		// 		}
-		// 	}
-
-		// 	// records the click in a click X and Y array
-		// 	function addClickCircle(x, y)
-		// 	{
-		// 			circleClickX.push(x);
-		// 			circleClickY.push(y);
-		// 	}
-
-		// 	// records the click in a click X and Y array
-		// 	function addClickOval(x, y)
-		// 	{
-		// 			circleClickX.push(x);
-		// 			circleClickY.push(y);
-		// 	}
-
-		// 	// records the click in a click X and Y array
-		// 	function addClickLine(x, y)
-		// 	{
-		// 			lineClickX.push(x);
-		// 			lineClickY.push(y);
-		// 	}
-
-		// 	// records the click in a click X and Y array
-		// 	function addClickSquare(x, y)
-		// 	{
-		// 			squareClickX.push(x);
-		// 			squareClickY.push(y);
-		// 	}
-
-		// 	// draws the entire drawing depending on the data structure for clicks and their positions and if draggin was turned on
-		// 	function redraw(doPaint){
-		// 		if (doPaint){
-
-		// 			  context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
-			  			
-		// 	  			// sets the line thickness, shape and color
-		// 			  context.strokeStyle = "#ff0000";
-		// 			  context.lineJoin = "round";
-		// 			  context.lineWidth = 5;
-		// 					// iterates through the entire array of clicks and dragging and draws the images	
-		// 			  for(var i=0; i < clickX.length; i++) {		
-		// 			    context.beginPath();
-		// 			    // dragging is turned on then it moves the the 
-		// 			    if(clickDrag[i] && i){
-		// 			    	// move the beginning of the line to the previous location
-		// 			      context.moveTo(clickX[i-1], clickY[i-1]);
-		// 			     }else{
-		// 			     	// move the beginning of the line current location but one less pixel in the x-direction
-		// 			       context.moveTo(clickX[i]-1, clickY[i]);
-		// 			     }
-		// 			     //draw the line to the current location
-		// 			     context.lineTo(clickX[i], clickY[i]);
-		// 			     context.closePath();
-		// 			     context.stroke();
-		// 			  }
-
-		// 			  // iterate through circle data structure and draw
-		// 			  for (var j=0; j < circleClickX.length; j++){
-		// 			  	redrawCircle(j);
-		// 			  }
-
-		// 			  //iterte through line data structures and draw
-		// 			  for (k=0;k<lineClickX.length; k=k+2) {
-		// 			  	drawLine(k);
-		// 			  }
-
-		// 			  //iterte through square data structures and draw
-		// 			  for (t=0;t<squareClickX.length; t++) {
-		// 			  	drawSquare(t);
-		// 			  }
-
-		// 		}
-
-			  
-		// 	}
-
-		// 	function redrawNewCircle(curr_pos_x, curr_pos_y){
-		// 			redraw(true);
-					
-		// 			context.strokeStyle = "#ff0000";
-		// 			context.lineJoin = "round";
-		// 			context.lineWidth = 5;
-
-		// 			var lengthofArr = circleClickX.length;
-		// 			radi = Math.sqrt(Math.pow((circleClickX[lengthofArr - 1] - curr_pos_x),2) + Math.pow((circleClickY[lengthofArr - 1] - curr_pos_y),2))
-
-	
-		// 			context.beginPath();
-		// 			context.arc(circleClickX[lengthofArr - 1],circleClickY[lengthofArr - 1], radi,0,Math.PI*2,true);
-		// 			context.closePath();
-		// 			context.stroke();
-
-		// 	}
-
-		// 	function drawLine(index_c){
-					
-		// 			context.strokeStyle = "#ff0000";
-		// 			context.lineJoin = "round";
-		// 			context.lineWidth = 5;
-
-
-		// 			context.beginPath();
-		// 			context.moveTo(lineClickX[k], lineClickY[k]);
-		// 			context.lineTo(lineClickX[k+1], lineClickY[k+1] );
-		// 			context.closePath();
-		// 			context.stroke();
-
-		// 	}
-
-		// 	function drawNewLine(curr_pos_x, curr_pos_y){
-		// 			redraw(true);
-		// 			//context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-		// 			context.strokeStyle = "#ff0000";
-		// 			context.lineJoin = "round";
-		// 			context.lineWidth = 5;
-
-		// 			var lengthofArr = lineClickX.length;
-
-		// 			context.beginPath();
-		// 			context.moveTo(lineClickX[lengthofArr - 1], lineClickY[lengthofArr - 1]);
-		// 			context.lineTo(curr_pos_x, curr_pos_y );
-		// 			context.closePath();
-		// 			context.stroke();
-
-		// 	}
-
-		// 	function drawSquare(index_c){
-		// 			//redraw(true);
-		// 			//context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-		// 			context.strokeStyle = "#ff0000";
-		// 			context.lineJoin = "round";
-		// 			context.lineWidth = 5;
-
-		// 			var lengthofArr = squareClickX.length;
-
-		// 			context.beginPath();
-		// 			context.rect(squareClickX[index_c],squareClickY[index_c], squareWidth[index_c], squareHeight[index_c]);
-		// 			context.closePath();
-		// 			context.stroke();
-
-		// 	}
-
-		// 	function drawNewSquare(curr_pos_x, curr_pos_y){
-		// 		   context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-		// 			redraw(true);
-					
-		// 			context.strokeStyle = "#ff0000";
-		// 			context.lineJoin = "round";
-		// 			context.lineWidth = 5;
-
-		// 			var lengthofArr = squareClickX.length;
-
-		// 			context.beginPath();
-		// 			context.rect(squareClickX[lengthofArr - 1],squareClickY[lengthofArr - 1], curr_pos_x - squareClickX[lengthofArr - 1], curr_pos_y - squareClickY[lengthofArr - 1]);
-		// 			context.closePath();
-		// 			context.stroke();
-
-		// 	}
-
-		// 	function redrawCircle(index_c){
-
-		// 			context.strokeStyle = "#ff0000";
-		// 			context.lineJoin = "round";
-		// 			context.lineWidth = 5;
-
-		// 			var lengthofArr = clickX.length;
-
-		// 			context.beginPath();
-		// 			context.arc(circleClickX[index_c],circleClickY[index_c], radius[index_c],0,Math.PI*2,true);
-		// 			context.closePath();
-		// 			context.stroke();
-
-		// 	}
-
-
-
-		// });
-
-		 </script>
 
 <script>
 
@@ -474,10 +72,10 @@ var screen_width = window.innerWidth*0.4;
 var screen_length = window.innerHeight*0.6; 
 
 var renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth*0.4, window.innerHeight*0.6 );
+renderer.setSize( window.innerWidth*0.4, 400 );
 console.log("inner width: "+ window.innerWidth);
 console.log("inner height: "+ window.innerHeight);
-document.body.appendChild( renderer.domElement );
+document.body.children[7].appendChild( renderer.domElement );
 
 var handle_selected = false;
 var current_handle;
@@ -516,8 +114,11 @@ function createHeartShape(shape_array) {
 
 	var newShape = new THREE.Shape();
 
-	newShape.moveTo(shape_array[0].sp_x, shape_array[0].sp_x)
+	//newShape.moveTo(shape_array[0].sp_x, shape_array[0].sp_x)
 	for (var i=0;i<shape_array.length;i++){
+		if (i ==0){
+          newShape.moveTo(shape_array[i].sp_x, shape_array[i].sp_y);
+        }
 		newShape.bezierCurveTo(shape_array[i].cp1_x, shape_array[i].cp1_y, shape_array[i].cp2_x, shape_array[i].cp2_y, shape_array[i].ep_x,shape_array[i].ep_y);
 	}
 
@@ -545,7 +146,7 @@ var render = function () {
 	requestAnimationFrame( render );
 
 	if (mesh != undefined) {
-		mesh.rotation.y += 0.02;	
+		mesh.rotation.y += 0.01;	
 	}
 
 				// cube.position.x += 0.001;
@@ -762,61 +363,6 @@ function returnBezCurveIndex(posX, posY){
   return curveinfo;
 }
 
-function createShape(){
-  if (shape_array.length <= 0){
-    var create_curve = new BezierCurve(20, 100, 200, 100, 20, 20, 200, 20);
-    create_curve.initialize();
-    shape_array.push(create_curve);
-  }
-}
-
-function addEdge(pos_x, pos_y){
-  var last_curve_index = shape_array.length - 1;
-  src_x = shape_array[last_curve_index].ep_x; 
-  src_y = shape_array[last_curve_index].ep_y; 
-  dst_x = pos_x;
-  dst_y = pos_y;
-  mid_x = (dst_x + src_x)/2;
-  mid_y = (dst_y + src_y)/2;
-  cp1_x = (src_x + mid_x)/2;
-  cp1_y = (src_y + mid_y)/2;
-  cp2_x = (mid_x + dst_x)/2;
-  cp2_y = (mid_y + dst_y)/2;
-  var create_curve = new BezierCurve(cp1_x, cp1_y, cp2_x, cp2_y, -1, -1, dst_x, dst_y);
-  shape_array.push(create_curve);
-}
-
-function testHeart(){
-  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clears the canvas
-  ctx.beginPath();
-  ctx.moveTo(182,84);
-  ctx.bezierCurveTo(71,82,138,178,238,188);
-  ctx.bezierCurveTo(320,85,236,9,182,84);
-  ctx.stroke();
-}
-
-
-function testShape(){
-  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clears the canvas
-  ctx.beginPath();
-  ctx.moveTo(83,196);
-  ctx.bezierCurveTo(111,275,221,242,220,157);
-  ctx.bezierCurveTo(114,46,50,72,83,196);
-  ctx.stroke();
-}
-
-function testShape2(){
-  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clears the canvas
-  ctx.beginPath();
-  ctx.moveTo(61,88);
-  ctx.bezierCurveTo(111,81,261,57,292,84);
-  ctx.bezierCurveTo(298,112,313,183,332,221);
-  ctx.bezierCurveTo(396,242,363,211,452,285);
-  ctx.bezierCurveTo(324,331,356,311,275,276);
-  ctx.bezierCurveTo(199,265,124,266,49,291);
-  ctx.bezierCurveTo(37,219,41,136,61,88);
-  ctx.stroke();
-}
 
 
 function makeShape(){
@@ -877,6 +423,29 @@ function saveSTL( scene, name ){
   saveAs(blob, name + '.stl');
 }
 
+function saveBCurves(){
+	var b_cs = new Array()
+	if (b_curves.length == 0){
+		var bc_to_json = {cp1_x: -1, cp1_y: -1, cp2_x: -1, cp2_y: -1, sp_x: -1, sp_y: -1, ep_x: -1,  ep_y: -1, draw_id: <%=@drawing.id%>}
+		b_cs.push(bc_to_json);
+	} else {
+		for (var i=0;i<b_curves.length;i++){
+			var bc_to_json = {cp1_x: b_curves[i].cp1_x, cp1_y: b_curves[i].cp1_y, cp2_x: b_curves[i].cp2_x, cp2_y: b_curves[i].cp2_y, sp_x: b_curves[i].sp_x, sp_y: b_curves[i].sp_y, ep_x: b_curves[i].ep_x,  ep_y: b_curves[i].ep_y, draw_id: <%=@drawing.id%>}
+			b_cs.push(bc_to_json);
+		}
+
+	}
+	
+	$.ajax({
+	  type: "POST",
+	  data: {curves:b_cs},
+	  url: "/save_curves",
+	  success: function(msg){
+	    console.log("successfully saved");
+	  }
+	});
+}
+
 
 
 
@@ -887,7 +456,7 @@ $('#canvas').mouseup(function (e){
 
 $('#canvas').mousedown(function(e){
     mousedown = true;
-    curr_posX = e.pageX/1.3
+    curr_posX = e.pageX - this.offsetLeft;
     curr_posY = e.pageY - this.offsetTop;
     console.log("curr_posX "+curr_posX);
     console.log("curr_posY "+curr_posY);
@@ -919,20 +488,13 @@ $('#canvas').mousedown(function(e){
       connect_2_selected = false;
     }
 
-    else if (create_shape == true && add_edge == false) {
-      createShape();
-    }
 
-    else if (create_shape == true && add_edge == true) {
-      addEdge(curr_posX, curr_posY);
-    }
     
 });
 
 $('#canvas').mousemove(function(e) {
   if (mousedown == true){
-  	//console.log("yoo")
-    curr_posX = e.pageX/1.3;
+    curr_posX = e.pageX - this.offsetLeft;
     curr_posY = e.pageY - this.offsetTop;
     checkAllHandles(curr_posX, curr_posY);
 
@@ -979,7 +541,10 @@ $('.create-shape').click(function() {
     manipulate_shape = false;
 
     makeShape();
-    createHeartShape(shape_array);
+    if (shape_connected){
+    	createHeartShape(shape_array);
+    }
+    
     redraw(true);
   } 
   changeIconColour(this,create_shape);
@@ -1006,6 +571,19 @@ $('.clear-screen').click(function() {
 $('.download-stl').click(function () {
 	saveSTL(scene, "test_stl");
 });
+
+$('.save-curves').click(function () {
+	saveBCurves();
+});
+
+$(document).ready(function() {
+	<% @b_curves.each do |b| %> 
+		var create_curve = new BezierCurve(<%=b.cp1_x%>, <%=b.cp1_y%>, <%=b.cp2_x%>, <%=b.cp2_y%>, <%=b.sp_x%>, <%=b.sp_y%>, <%=b.ep_x%>, <%=b.ep_y%>);
+		b_curves.push(create_curve);
+	<% end %> 
+	redraw(true);
+
+})
 
 
 

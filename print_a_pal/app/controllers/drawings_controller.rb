@@ -12,6 +12,7 @@ class DrawingsController < ApplicationController
   # GET /drawings/1
   # GET /drawings/1.json
   def show
+    @b_curves = BezierCurve.where(draw_id: @drawing.id)
   end
 
   # GET /drawings/new
@@ -72,7 +73,7 @@ class DrawingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def drawing_params
-      # params.require(:drawing).permit(:user_id)
-      params.fetch(:drawing, {})
+      #params.require(:drawing).permit(:user_id)
+      params.fetch(:draw, {})
     end
 end
