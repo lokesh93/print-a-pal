@@ -1,0 +1,35 @@
+drawing application break down
+
+
+Introduction:
+This document breaks down all the things needed to code for the drawing application. There are two components for the drawing application. 2D component and 3D component. Below will be the breakdown for each.
+
+2D component:
+The 2D component consists of creating two primitives with handles for each. The two primitives are circles and ellipoids.
+	
+	Ellipoids:
+	Ellipoids are more or less like tubes. The way you draw them is you:
+		 1.click the ellipoid tool.
+		 2.draw a line 
+		 3.an oval will be created with the straight line acting like its spine.
+		 4.handles will be added on to the oval. they are the following:
+		 	1. handles for the z-axis tilt (two on each of the spine that is a purple colour)
+		 	2. handles for the end capsules (two on each end in green colour)
+		 	3. handles for the spine curves (user clicks the spine and chooses however many handles depending on the curve and it gets distrubuted evenly along the spine)
+		 	4. handles along the curves for scaling (3 on each side)
+
+
+		Implementation
+		 1. implement a straight line 
+		 2. an oval in this case will consist of two ovals and a rectangle (initially)
+		 	- if rectangle is length L, r = L/10
+		 3. dots will be drawn automatically for the handles
+		 4. When a user pulls a handle for the spine of the tube draw a bezier curve from the midpoint of the handle and the preceding handle to the midpoint of the handle and the next handle. if there is no next handle go the the end of the spine
+		 	- the edges of 
+
+
+
+
+
+
+
