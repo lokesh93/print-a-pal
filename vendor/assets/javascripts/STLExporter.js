@@ -4,7 +4,11 @@
  * @author kjlubick / https://github.com/kjlubick
  * @author kovacsv / http://kovacsv.hu/
  * @author mrdoob / http://mrdoob.com/
+
+
  */
+
+
 THREE.STLExporter = function () {};
 
 THREE.STLExporter.prototype = {
