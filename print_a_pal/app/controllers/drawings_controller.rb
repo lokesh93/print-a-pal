@@ -7,6 +7,7 @@ class DrawingsController < ApplicationController
   # GET /drawings.json
   def index
     @drawings = Drawing.where(user_id: current_user.id)
+    @drawing = Drawing.new
   end
 
   # GET /drawings/1

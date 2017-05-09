@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
+  default_url_options :host => "localhost:3000"
   resources :bezier_curves
   resources :drawings
   resources :draws
   resources :homes
+  resources :users do
+    member do
+      get :confirm_email
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

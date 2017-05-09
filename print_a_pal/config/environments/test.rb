@@ -29,7 +29,19 @@ Rails.application.configure do
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
+  ActionMailer::Base.smtp_settings = {
+  :address        => 'smtp.gmail.com',
+  :domain         => 'mail.google.com',
+  :port           => 587,
+  :user_name      => 'podipireddy5@gmail.com',
+  :password       => '123Podi$',
+  :authentication => :plain,
+  :enable_starttls_auto => true
+}
   config.action_mailer.delivery_method = :test
+
+
+  config.action_mailer.default_url_options = { :host => "localhost" }
 
   # Randomize the order test cases are executed.
   config.active_support.test_order = :random

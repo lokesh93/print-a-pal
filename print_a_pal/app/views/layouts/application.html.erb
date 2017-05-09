@@ -15,16 +15,31 @@
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="https://use.fontawesome.com/d2a4a2be39.js"></script>
+  <style>
+  a:hover{
+    text-decoration: none !important;
+    background: none;
+  }
+  .table-dashboard {
+    width: 70%;
+    margin: 0% 12%;
+    padding: 0% 3%;
+    border: solid;
+    border-radius: 10px;
+  }
+  .ui-button-text{
+    border: solid;
+    padding: 5px 2%;
+    border-radius: 10px;
+    background: green;
+    color: white;
+  }
+  </style>
 </head>
 <body>
 
 <!-- # added these lines. -->
-<% if current_user %>
-  Signed in as <%= current_user.name %>  <h4 style="float:right;"><%= link_to "Logout", '/logout' %></h4>
 
-<% else %>
-  <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
-<% end %>
 
 <% flash.each do |name, msg| %>
       <%= content_tag :div, msg, class: name %>
