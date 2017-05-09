@@ -102,7 +102,7 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth*0.4, 400 );
 console.log("inner width: "+ window.innerWidth);
 console.log("inner height: "+ window.innerHeight);
-document.body.children[9].appendChild( renderer.domElement );
+document.body.children[8].appendChild( renderer.domElement );
 
 var handle_selected = false;
 var current_handle;
@@ -134,20 +134,30 @@ var create_shape = false;
 
 var manipulate_shape = true;
 
+var draw_shape = true;
+
 function createHeartShape(shape_array) {
 	var x = 0, y = 0; f = 1/10;
 
 	scene.remove(scene.children[0]);
 
 	var newShape = new THREE.Shape();
+  // var newHole = new THREE.Shape();
 
-	//newShape.moveTo(shape_array[0].sp_x, shape_array[0].sp_x)
+  // draw shape
 	for (var i=0;i<shape_array.length;i++){
 		if (i ==0){
           newShape.moveTo(shape_array[i].sp_x, shape_array[i].sp_y);
         }
 		newShape.bezierCurveTo(shape_array[i].cp1_x, shape_array[i].cp1_y, shape_array[i].cp2_x, shape_array[i].cp2_y, shape_array[i].ep_x,shape_array[i].ep_y);
 	}
+
+  // //draw hole
+  // for (var i=0;i<hole_array.length;i++){
+  //   if (i==0){
+
+  //   }
+  // }
 
 
 	var extrudeSettings = {

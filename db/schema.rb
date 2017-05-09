@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170411175050) do
+ActiveRecord::Schema.define(version: 20170509072450) do
 
   create_table "bezier_curves", force: :cascade do |t|
     t.decimal  "cp1_x",                precision: 10
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 20170411175050) do
     t.string   "password_digest", limit: 255
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.boolean  "email_confirmed"
+    t.string   "confirm_token",   limit: 255
   end
 
 end

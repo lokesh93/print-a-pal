@@ -72,6 +72,15 @@ body{
 .in-front{
   text-align: center;
 }
+.about-home-1{
+  display: flex;
+}
+.home-desc{
+  flex: 1;
+}
+.home-desc-text{
+  margin: 20% 0%;
+}
 a:hover{
   text-decoration: none !important;
   background: none;
@@ -85,13 +94,19 @@ a:hover{
         <a class="nav-links" href="" style="font-size:28px;">PRINT-A-PAL</a>
       </li>
       <li class="navigation-item">
-        <a class="nav-links" href="/signup">SIGN UP</a>
+        <%if !current_user %>
+          <a class="nav-links" href="/signup">SIGN UP</a>
+        <% end %>
       </li>
       <li class="navigation-item">
         <a class="nav-links" href="/drawings">DRAWINGS</a>
       </li>
       <li class="navigation-item-login">
-        <a class="nav-links" href="/login">LOGIN</a>
+        <% if !current_user  %>
+          <a class="nav-links" href="/login">LOGIN</a>
+        <%else %>
+          <a class="nav-links" href="/logout">LOGOUT</a>
+        <%end%>
       </li>
     </ul>
   </nav>
@@ -128,11 +143,46 @@ a:hover{
       </div>
     </div>
   </div>
-<!--     <div class="row descript">
-    
-    
-    
-  </div> -->
+  <div class="offset-2" style="border-bottom:solid"></div>
+  <div class="offset-2"></div>
+  <!-- home description 1 -->
+  <div class="about-home-1 row">
+    <div class="col-sm-6 home-desc">
+      <img src="/images/home_2.png" alt="screen-1" style="width:100%"/>
+    </div>
+    <div class="col-sm-6 home-desc">
+      <h3 class="home-desc-text">
+        Draw 2D shapes using bezier curves by manipulating the shape with the red dots and the position of the curve with the green blue dots
+      </h3>
+    </div>
+  </div> 
+  <div class="offset-2" style="border-bottom:solid"></div>
+   <div class="offset-2"></div>
+  <!-- home description 2 -->
+  <div class="about-home-1 row">
+    <div class="col-sm-6 home-desc">
+      <h3 class="home-desc-text">
+       Connect the green dots to the blue dots using the link icon of other curves to create and overall shape and render it in 3D to print out the 3D printable STL file
+      </h3>
+    </div>
+    <div class="col-sm-6 home-desc">
+      <img src="/images/home_1.png" alt="screen-1" style="width:100%"/>
+    </div>
+  </div> 
+  <div class="offset-2" style="border-bottom:solid"></div>
+  <div class="offset-2"></div>
+  <!-- home description 3 -->
+  <div class="about-home-1 row">
+    <div class="col-sm-6 home-desc">
+      <img src="/images/home_3.png" alt="screen-1" style="width:100%"/>
+    </div>
+    <div class="col-sm-6 home-desc">
+      <h3 class="home-desc-text">
+       Manage various drawings for each user
+      </h3>
+    </div>
+  </div> 
+
 </div>
 
 
