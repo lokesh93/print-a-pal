@@ -31,14 +31,21 @@
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
-    if @user.save
-        UserMailer.registration_confirmation(@user).deliver
-        flash[:success] = "Please confirm your email address to continue"
-        # session[:user_id] = @user.id
-        redirect_to '/'
-    else 
-      flash[:error] = "Ooooppss, something went wrong!"
+    user_exist = User.find_by_email(user_params[:email])
+    if !user_exist
+      @user = User.new(user_params)
+      puts user_params
+      if @user.save
+          UserMailer.registration_confirmation(@user).deliver
+          flash[:success] = "Please confirm your email address to continue"
+          # session[:user_id] = @user.id
+          redirect_to '/'
+      else 
+        flash[:error] = "Ooooppss, something went wrong!"
+        redirect_to '/signup'
+      end
+    else
+      flash[:error] = "user already exists"
       redirect_to '/signup'
     end
     # respond_to do |format|
