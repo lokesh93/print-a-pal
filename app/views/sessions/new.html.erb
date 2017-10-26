@@ -1,0 +1,27 @@
+<style>
+	.add-style{
+		border-radius:10px;
+		border-style: solid;
+		padding: 10px;
+		margin:30px;
+	}
+
+	input{
+		width: 50%;
+		border-radius: 10px;
+		border-style: solid;
+		padding: 20px;
+	}
+</style>
+<div style="text-align:center;">
+<h1>Login</h1>
+<div style="border:solid;border-radius:20px;width:60%;margin:0% 20%;padding:3% 0%">
+	<%= form_tag '/login' do %>
+
+	  <h3>Email: </h3></br><%= text_field_tag :email %></br>
+	  <h3>Password: </h3></br> <%= password_field_tag :password %></br>
+	  <%= submit_tag "Submit", :class =>"btn-success add-style" %>
+	</div>
+</div>
+
+<% end %>

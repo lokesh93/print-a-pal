@@ -1,0 +1,189 @@
+<script src="https://use.fontawesome.com/d2a4a2be39.js"></script>
+<style>
+.background-image{
+    /*background-image: url("images/woman-hand-smartphone-desk.jpg");*/
+    background: #333333;
+    height: 600px;
+    background-size: cover;
+}
+body{
+  margin: 0px;
+  font-family: helvetica;
+}
+.home-navigation{
+  background-color: #333333;
+  padding: 1% 0%;
+}
+.navigation-links{
+      margin: 0px;
+}
+.navigation-item{
+  margin: 0px 30px;
+  padding: 15px;
+  display: inline-block;
+}
+.navigation-item-login{
+  margin: 0px 35% 0% 0%;
+  padding: 15px;
+  display: inline-block;
+}
+.nav-links{
+  font-family: helvetica;
+  color: white;
+  text-decoration: none;
+}
+.slogan{
+    font-size: 48px;
+    font-family: helvetica;
+    color: white;
+    padding: 1%;
+    border-style: solid;
+    border-radius: 20px;
+    border-width: thin;
+}
+.slogan-descript{
+    font-size: 36px;
+    font-family: helvetica;
+    color: white;
+    padding: 3% 0%;
+}
+.slog-desc{
+  text-align: center;
+}
+
+.offset-1 {
+    height: 100px;
+}
+.offset-2 {
+    height: 40px;
+}
+.intro-descript{
+  font-size: 28px;
+  padding: 4% 10%;
+  text-align: center;
+}
+.descript{
+  text-align: center;
+  padding: 1% 0%;
+}
+.descript-text{
+  font-size:20px;
+}
+.in-front{
+  text-align: center;
+}
+.about-home-1{
+  display: flex;
+}
+.home-desc{
+  flex: 1;
+}
+.home-desc-text{
+  margin: 20% 0%;
+}
+a:hover{
+  text-decoration: none !important;
+  background: none;
+}
+
+</style>
+<div class="background-image">
+  <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <ul class="navigation-links">
+      <li class="navigation-item">
+        <a class="nav-links" href="" style="font-size:28px;">PRINT-A-PAL</a>
+      </li>
+      <li class="navigation-item">
+        <%if !current_user %>
+          <a class="nav-links" href="/signup">SIGN UP</a>
+        <% end %>
+      </li>
+      <li class="navigation-item">
+        <a class="nav-links" href="/drawings">DRAWINGS</a>
+      </li>
+      <li class="navigation-item-login">
+        <% if !current_user  %>
+          <a class="nav-links" href="/login">LOGIN</a>
+        <%else %>
+          <a class="nav-links" href="/logout">LOGOUT</a>
+        <%end%>
+      </li>
+    </ul>
+  </nav>
+  <div class="col-md-12 in-front">
+    <div class="offset-1"></div>
+    <span class="slogan">PRINT-A-PAL</span>
+     <div class="offset-2"></div>
+    <div class="slog-desc">
+      <span class="slogan-descript">A simple tool to make 3d printable shapes from 2D drawings</span>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row intro-descript">
+    Create shapes by connecting a sequence of curves to achieve desired
+  </div>
+  <div class="row descript">
+    <div class="col-sm-4">
+      <i class="fa fa-check fa-5x" aria-hidden="true"></i>
+      <div class="descript-text">
+        Easy to use application with a simple interface but powerful as well
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <i class="fa fa-floppy-o fa-5x" aria-hidden="true"></i>
+      <div class="descript-text">
+        save your drawings to tackle them later
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <i class="fa fa-file-o fa-5x" aria-hidden="true"></i>
+      <div class="descript-text">
+        Print out an STL file and take it your nearest 3D printing center
+      </div>
+    </div>
+  </div>
+  <div class="offset-2" style="border-bottom:solid"></div>
+  <div class="offset-2"></div>
+  <!-- home description 1 -->
+  <div class="about-home-1 row">
+    <div class="col-sm-6 home-desc">
+      <img src="/images/home_2.png" alt="screen-1" style="width:100%"/>
+    </div>
+    <div class="col-sm-6 home-desc">
+      <h3 class="home-desc-text">
+        Draw 2D shapes using bezier curves by manipulating the shape with the red dots and the position of the curve with the green blue dots
+      </h3>
+    </div>
+  </div> 
+  <div class="offset-2" style="border-bottom:solid"></div>
+   <div class="offset-2"></div>
+  <!-- home description 2 -->
+  <div class="about-home-1 row">
+    <div class="col-sm-6 home-desc">
+      <h3 class="home-desc-text">
+       Connect the green dots to the blue dots using the link icon of other curves to create and overall shape and render it in 3D to print out the 3D printable STL file
+      </h3>
+    </div>
+    <div class="col-sm-6 home-desc">
+      <img src="/images/home_1.png" alt="screen-1" style="width:100%"/>
+    </div>
+  </div> 
+  <div class="offset-2" style="border-bottom:solid"></div>
+  <div class="offset-2"></div>
+  <!-- home description 3 -->
+  <div class="about-home-1 row">
+    <div class="col-sm-6 home-desc">
+      <img src="/images/home_3.png" alt="screen-1" style="width:100%"/>
+    </div>
+    <div class="col-sm-6 home-desc">
+      <h3 class="home-desc-text">
+       Manage various drawings for each user
+      </h3>
+    </div>
+  </div> 
+
+</div>
+
+
+

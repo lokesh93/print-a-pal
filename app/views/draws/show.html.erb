@@ -1,0 +1,1013 @@
+<style>
+			body { margin: 0; }
+			canvas { width: 40%; height: 400px }
+			#canvas{
+				    border-style: solid;
+				    border-radius: 20px;
+				    width: 100%;
+				    height: 400px;
+			}
+			#title{
+				text-align: left;
+				font-family: helvetica;
+			}
+			#draw-mode{
+				text-align: left;
+				font-family: helvetica;
+			}
+			.draw-buttons{
+				text-align: left;
+			}
+			.fa{
+				margin: 0px 15px;
+			}
+			.draw-portion{
+				width: 40%;
+				display: inline-block;
+			}
+</style>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/d2a4a2be39.js"></script>
+<p id="notice"><%= notice %>
+
+</p>
+<div class="draw-portion">
+	<div id="title"><h1>PRINT A PAL</h1></div>
+	<!-- <div id="draw-mode" style="text-align: left">
+		<select>
+			<option value="volvo">FRONT VIEW</option>
+			<option value="saab">SIDE VIEW</option>
+			 <option value="opel">ANNGLED VIEW</option>
+		</select>
+	</div> -->
+	<canvas id="canvas" width="400" height="400"></canvas>
+		<div class="draw-buttons">
+			<!-- <i class="fa fa-pencil fa-3x pencil-button" aria-hidden="true"></i>
+			<i class="fa fa-circle-thin fa-3x circle-button" aria-hidden="true"></i> -->
+			<i class="fa fa-minus fa-3x create-b-curve" aria-hidden="true"></i>
+			<i class="fa fa-check fa-3x create-shape" aria-hidden="true"></i>
+			<i class="fa fa-edit fa-3x manipulate-shape" aria-hidden="true"></i>
+			<i class="fa fa-plug fa-3x con-b-curve" aria-hidden="true"></i>
+			<i class="fa fa-eraser fa-3x clear-screen" aria-hidden="true"></i>
+			<i class="fa fa-download  fa-3x download-stl" aria-hidden="true"></i>
+</div>
+
+
+<%= link_to 'Edit', edit_draw_path(@draw) %> |
+<%= link_to 'Back', draws_path %>
+
+		<script>
+			
+		</script>
+
+		 <script>
+
+
+		// 	// event handler for when pencil button is pushed
+		// 	$(".pencil-button").click(function() {
+		// 		draw_circle = false; // turn all other buttons
+		// 		draw_square = false;
+		// 		draw_line = false;
+		// 		// if pencil is on then turn it off and change colour
+		// 		if (draw_pencil){
+		// 			draw_pencil = false; 
+		// 			$(".pencil-button").css("color","black");
+		// 		} 
+		// 		// if pencil is off then turn it on and change colour
+		// 		else {
+
+		// 			draw_pencil = true;
+		// 			$(".pencil-button").css("color","blue");
+		// 		}
+				
+
+		// 	});
+
+		// 	// event handler for when circle button is pushed
+		// 	$(".circle-button").click(function() {
+		// 		// turn all other buttons
+		// 		draw_pencil = false;
+		// 		draw_square = false;
+		// 		draw_line = false;
+		// 		// if pencil is off then turn it on and change colour
+		// 		if (draw_circle){
+		// 			draw_circle = false;
+		// 			$(".circle-button").css("color","black");
+		// 		}
+		// 		// if circle is off then turn it on and change colour
+		// 		 else {
+		// 			draw_circle = true;
+		// 			$(".circle-button").css("color","blue");
+		// 		}
+				
+
+		// 	});
+
+		// 	$('.add-ellipse').click(function () {
+		// 		var canvas = document.getElementById('canvas');
+		// 		var ctx = canvas.getContext('2d');
+
+		// 		ctx.beginPath();
+		// 		ctx.ellipse(100, 100, 50, 75, 135 * Math.PI/180, 0, 2 * Math.PI);
+		// 		ctx.stroke();
+		// 	})
+
+		// 	$('.add-oval').click(function () {
+		// 		// turn all other buttons
+		// 		draw_pencil = false;
+		// 		draw_square = false;
+		// 		draw_line = false;
+		// 		draw_oval = true;
+		// 	})
+
+		// 	// event handler for when line button is pushed
+		// 	$(".line-button").click(function() {
+		// 		// turn all other buttons
+		// 		draw_pencil = false;
+		// 		draw_circle = false;
+		// 		draw_square = false;
+		// 		// if line is off then turn it on and change colour
+		// 		if (draw_line){
+		// 			draw_line = false;
+		// 			$(".line-button").css("color","black");
+		// 		}
+		// 		// if line is off then turn it on and change colour
+		// 		 else {
+		// 			draw_line = true;
+		// 			$(".line-button").css("color","blue");
+		// 		}
+
+
+				
+
+		// 	});
+
+		// 	// event handler for when line button is pushed
+		// 	$(".square-button").click(function() {
+		// 		// turn all other buttons
+		// 		draw_pencil = false;
+		// 		draw_circle = false;
+		// 		draw_line = false;
+		// 		// if line is off then turn it on and change colour
+		// 		if (draw_square){
+		// 			draw_square = false;
+		// 			$(".square-button").css("color","black");
+		// 		}
+		// 		// if square is off then turn it on and change colour
+		// 		 else {
+		// 			draw_square = true;
+		// 			$(".square-button").css("color","blue");
+		// 		}
+				
+
+		// 	});
+
+
+
+
+
+
+		// 	// event handle for when the mouse is pressed
+		// 	$('#canvas').mousedown(function(e){
+		// 		// get the current mouse coords
+		// 	  var mouseX = e.pageX - this.offsetLeft;
+		// 	  var mouseY = e.pageY - this.offsetTop;
+				
+		// 	  paint = true;
+		// 	  // if the pencil tool is on then record the click and go to draw function for pencil
+		// 	  if (draw_pencil){
+		// 	  	addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, draw_pencil);
+		// 	  	redraw(draw_pencil, draw_circle);
+		// 	  }
+		// 	  // if the circle tool is on then record the click and go to draw function for circle
+		// 	  if (draw_circle){
+		// 	  	//addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, draw_circle);
+		// 	  	addClickCircle(e.pageX - this.offsetLeft, e.pageY - this.offsetTop)
+		// 	  	// redraw(draw_pencil, draw_circle);
+		// 	  	redrawNewCircle(e.pageX - this.offsetLeft, e.pageY - this.offsetTop)
+		// 	  }
+		// 	  // if the line tool is on then record the click and go to draw function for circle
+		// 	  if (draw_line){
+		// 	  	//addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, draw_circle);
+		// 	  	addClickLine(e.pageX - this.offsetLeft, e.pageY - this.offsetTop)
+		// 	  	// redraw(draw_pencil, draw_circle);
+		// 	  	drawNewLine(e.pageX - this.offsetLeft, e.pageY - this.offsetTop)
+		// 	  }
+
+		// 	  // if the square tool is on then record the click and go to draw function for square
+		// 	  if (draw_square){
+		// 	  	//addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, draw_circle);
+		// 	  	addClickSquare(e.pageX - this.offsetLeft, e.pageY - this.offsetTop)
+		// 	  	// redraw(draw_pencil, draw_circle);
+		// 	  	drawNewSquare(e.pageX - this.offsetLeft, e.pageY - this.offsetTop)
+		// 	  }
+
+		// 	  // if the line tool is on then record the click and go to draw function for circle
+		// 	  if (draw_oval){
+		// 	  	//addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, draw_circle);
+		// 	  	addClickOval(e.pageX - this.offsetLeft, e.pageY - this.offsetTop)
+		// 	  	// redraw(draw_pencil, draw_circle);
+		// 	  }
+
+		// 	});
+
+			
+		// 	// event handler for when the mouse moves
+		// 	$('#canvas').mousemove(function(e){
+		// 	// record the click with dragging turned on and go to draw draw function for pencil
+		// 	  if(paint && draw_pencil){
+		// 	    addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, draw_pencil ,true);
+		// 	    redraw(draw_pencil, draw_circle);
+
+		// 	  }
+		// 	 // go to draw circle function
+		// 	  if (paint && draw_circle) {
+		// 	  	redrawNewCircle(e.pageX - this.offsetLeft, e.pageY - this.offsetTop)
+		// 	  }
+
+		// 	  // go to draw circle function
+		// 	  if (paint && draw_line) {
+		// 	  	drawNewLine(e.pageX - this.offsetLeft, e.pageY - this.offsetTop)
+		// 	  }
+
+		// 	  // go to draw circle function
+		// 	  if (paint && draw_square) {
+		// 	  	drawNewSquare(e.pageX - this.offsetLeft, e.pageY - this.offsetTop)
+		// 	  }
+
+		// 	});
+
+		// 	// event handler when the mouse button is released and turns off drawing
+		// 	$('#canvas').mouseup(function(e){
+		// 	  paint = false;
+		// 	  var mouseX = e.pageX - this.offsetLeft;
+		// 	  var mouseY = e.pageY - this.offsetTop;
+		// 	  var lengthofArr = circleClickX.length;
+		// 	  if (draw_circle){
+		// 	  	var lengthofArr = circleClickX.length;
+		// 	  	rad = Math.sqrt(Math.pow((circleClickX[lengthofArr - 1] - mouseX),2) + Math.pow((circleClickY[lengthofArr - 1] - mouseY),2))
+		// 	  	radius.push(rad)
+		// 	  }
+
+		// 	  if (draw_line){
+		// 	  	lineClickX.push(mouseX);
+		// 	  	lineClickY.push(mouseY);
+		// 	  }
+		// 	  if (draw_square){
+		// 	  	var lengthofArr = squareClickX.length;
+		// 	  	squareWidth.push(mouseX - squareClickX[lengthofArr - 1])
+		// 	  	squareHeight.push(mouseY - squareClickY[lengthofArr - 1])
+		// 	  	squareClickY.push(mouseY);
+		// 	  }
+		// 	  redraw(true);
+		// 	});
+
+		// 	// event handler when the mouse leaves the canvas and turns off drawing
+		// 	$('#canvas').mouseleave(function(e){
+		// 	  paint = false;
+		// 	  redraw(true);
+		// 	  // draw_circle = false;
+		// 	  // draw_pencil = false;
+		// 	});
+
+
+		// 	// records the click in a click X and Y array
+		// 	function addClick(x, y, doPaint, dragging)
+		// 	{
+		// 		if (doPaint && !draw_circle){
+		// 			clickX.push(x);
+		// 	  		clickY.push(y);
+		// 	  		clickDrag.push(dragging);
+		// 		}
+		// 		if (draw_circle){
+		// 			circleClickX.push(x);
+		// 			circleClickY.push(y);
+		// 		}
+		// 	}
+
+		// 	// records the click in a click X and Y array
+		// 	function addClickCircle(x, y)
+		// 	{
+		// 			circleClickX.push(x);
+		// 			circleClickY.push(y);
+		// 	}
+
+		// 	// records the click in a click X and Y array
+		// 	function addClickOval(x, y)
+		// 	{
+		// 			circleClickX.push(x);
+		// 			circleClickY.push(y);
+		// 	}
+
+		// 	// records the click in a click X and Y array
+		// 	function addClickLine(x, y)
+		// 	{
+		// 			lineClickX.push(x);
+		// 			lineClickY.push(y);
+		// 	}
+
+		// 	// records the click in a click X and Y array
+		// 	function addClickSquare(x, y)
+		// 	{
+		// 			squareClickX.push(x);
+		// 			squareClickY.push(y);
+		// 	}
+
+		// 	// draws the entire drawing depending on the data structure for clicks and their positions and if draggin was turned on
+		// 	function redraw(doPaint){
+		// 		if (doPaint){
+
+		// 			  context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
+			  			
+		// 	  			// sets the line thickness, shape and color
+		// 			  context.strokeStyle = "#ff0000";
+		// 			  context.lineJoin = "round";
+		// 			  context.lineWidth = 5;
+		// 					// iterates through the entire array of clicks and dragging and draws the images	
+		// 			  for(var i=0; i < clickX.length; i++) {		
+		// 			    context.beginPath();
+		// 			    // dragging is turned on then it moves the the 
+		// 			    if(clickDrag[i] && i){
+		// 			    	// move the beginning of the line to the previous location
+		// 			      context.moveTo(clickX[i-1], clickY[i-1]);
+		// 			     }else{
+		// 			     	// move the beginning of the line current location but one less pixel in the x-direction
+		// 			       context.moveTo(clickX[i]-1, clickY[i]);
+		// 			     }
+		// 			     //draw the line to the current location
+		// 			     context.lineTo(clickX[i], clickY[i]);
+		// 			     context.closePath();
+		// 			     context.stroke();
+		// 			  }
+
+		// 			  // iterate through circle data structure and draw
+		// 			  for (var j=0; j < circleClickX.length; j++){
+		// 			  	redrawCircle(j);
+		// 			  }
+
+		// 			  //iterte through line data structures and draw
+		// 			  for (k=0;k<lineClickX.length; k=k+2) {
+		// 			  	drawLine(k);
+		// 			  }
+
+		// 			  //iterte through square data structures and draw
+		// 			  for (t=0;t<squareClickX.length; t++) {
+		// 			  	drawSquare(t);
+		// 			  }
+
+		// 		}
+
+			  
+		// 	}
+
+		// 	function redrawNewCircle(curr_pos_x, curr_pos_y){
+		// 			redraw(true);
+					
+		// 			context.strokeStyle = "#ff0000";
+		// 			context.lineJoin = "round";
+		// 			context.lineWidth = 5;
+
+		// 			var lengthofArr = circleClickX.length;
+		// 			radi = Math.sqrt(Math.pow((circleClickX[lengthofArr - 1] - curr_pos_x),2) + Math.pow((circleClickY[lengthofArr - 1] - curr_pos_y),2))
+
+	
+		// 			context.beginPath();
+		// 			context.arc(circleClickX[lengthofArr - 1],circleClickY[lengthofArr - 1], radi,0,Math.PI*2,true);
+		// 			context.closePath();
+		// 			context.stroke();
+
+		// 	}
+
+		// 	function drawLine(index_c){
+					
+		// 			context.strokeStyle = "#ff0000";
+		// 			context.lineJoin = "round";
+		// 			context.lineWidth = 5;
+
+
+		// 			context.beginPath();
+		// 			context.moveTo(lineClickX[k], lineClickY[k]);
+		// 			context.lineTo(lineClickX[k+1], lineClickY[k+1] );
+		// 			context.closePath();
+		// 			context.stroke();
+
+		// 	}
+
+		// 	function drawNewLine(curr_pos_x, curr_pos_y){
+		// 			redraw(true);
+		// 			//context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+		// 			context.strokeStyle = "#ff0000";
+		// 			context.lineJoin = "round";
+		// 			context.lineWidth = 5;
+
+		// 			var lengthofArr = lineClickX.length;
+
+		// 			context.beginPath();
+		// 			context.moveTo(lineClickX[lengthofArr - 1], lineClickY[lengthofArr - 1]);
+		// 			context.lineTo(curr_pos_x, curr_pos_y );
+		// 			context.closePath();
+		// 			context.stroke();
+
+		// 	}
+
+		// 	function drawSquare(index_c){
+		// 			//redraw(true);
+		// 			//context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+		// 			context.strokeStyle = "#ff0000";
+		// 			context.lineJoin = "round";
+		// 			context.lineWidth = 5;
+
+		// 			var lengthofArr = squareClickX.length;
+
+		// 			context.beginPath();
+		// 			context.rect(squareClickX[index_c],squareClickY[index_c], squareWidth[index_c], squareHeight[index_c]);
+		// 			context.closePath();
+		// 			context.stroke();
+
+		// 	}
+
+		// 	function drawNewSquare(curr_pos_x, curr_pos_y){
+		// 		   context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+		// 			redraw(true);
+					
+		// 			context.strokeStyle = "#ff0000";
+		// 			context.lineJoin = "round";
+		// 			context.lineWidth = 5;
+
+		// 			var lengthofArr = squareClickX.length;
+
+		// 			context.beginPath();
+		// 			context.rect(squareClickX[lengthofArr - 1],squareClickY[lengthofArr - 1], curr_pos_x - squareClickX[lengthofArr - 1], curr_pos_y - squareClickY[lengthofArr - 1]);
+		// 			context.closePath();
+		// 			context.stroke();
+
+		// 	}
+
+		// 	function redrawCircle(index_c){
+
+		// 			context.strokeStyle = "#ff0000";
+		// 			context.lineJoin = "round";
+		// 			context.lineWidth = 5;
+
+		// 			var lengthofArr = clickX.length;
+
+		// 			context.beginPath();
+		// 			context.arc(circleClickX[index_c],circleClickY[index_c], radius[index_c],0,Math.PI*2,true);
+		// 			context.closePath();
+		// 			context.stroke();
+
+		// 	}
+
+
+
+		// });
+
+		 </script>
+
+<script>
+
+
+var scene = new THREE.Scene();
+var mesh; 
+var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+var screen_width = window.innerWidth*0.4;
+var screen_length = window.innerHeight*0.6; 
+
+var renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth*0.4, window.innerHeight*0.6 );
+console.log("inner width: "+ window.innerWidth);
+console.log("inner height: "+ window.innerHeight);
+document.body.appendChild( renderer.domElement );
+
+var handle_selected = false;
+var current_handle;
+var bezier_index = 0;
+var handles = new Array();
+var b_curves = new Array();
+var c = document.getElementById("canvas");
+var ctx = c.getContext("2d");
+var mousedown = false;
+
+var select_sp = false;
+var select_ep = false;
+
+var connect_curve = false;
+var connect_1_selected = false;
+var connect_2_selected = false;
+var connect_1_x;
+var connect_1_y;
+var connect_2_x;
+var connect_2_y;
+var shape_connected = false;
+
+
+var add_edge = false;
+
+var shape_array = new Array();
+
+var create_shape = false;
+
+var manipulate_shape = true;
+
+function createHeartShape(shape_array) {
+	var x = 0, y = 0; f = 1/10;
+
+	scene.remove(scene.children[0]);
+
+	var newShape = new THREE.Shape();
+
+	newShape.moveTo(shape_array[0].sp_x, shape_array[0].sp_x)
+	for (var i=0;i<shape_array.length;i++){
+		newShape.bezierCurveTo(shape_array[i].cp1_x, shape_array[i].cp1_y, shape_array[i].cp2_x, shape_array[i].cp2_y, shape_array[i].ep_x,shape_array[i].ep_y);
+	}
+
+
+	var extrudeSettings = {
+		steps: 2,
+		amount: 60,
+		bevelEnabled: true,
+		bevelThickness: 2,
+		bevelSize: 2,
+		bevelSegments: 6
+	};
+
+	var geometry = new THREE.ExtrudeGeometry( newShape, extrudeSettings );
+	var material = new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe: true } );
+	mesh = new THREE.Mesh( geometry, material ) ;
+	scene.add( mesh );
+}
+
+// createHeartShape();
+
+camera.position.z = 350; 
+
+var render = function () {
+	requestAnimationFrame( render );
+
+	if (mesh != undefined) {
+		mesh.rotation.y += 0.02;	
+	}
+
+				// cube.position.x += 0.001;
+	// cube.position.y += 0.001;
+
+	renderer.render(scene, camera);
+};
+
+render();
+
+
+function HandleInfo(point_type, cur_index){
+  this.point_type = point_type
+  this.cur_index = cur_index;
+}
+
+function Handle(type, x, y) {
+    this.type = type;
+    this.x = x;
+    this.y = y;
+    this.initialize = function() {
+      // draw handles for controll points
+      ctx.beginPath();
+      ctx.fill();
+      ctx.arc(this.x,this.y,5,0,2*Math.PI);
+      if (this.type == 'control') {
+     		ctx.fillStyle = "red";
+      } else if (this.type == "start"){
+        ctx.fillStyle = "green";
+      }
+      else{
+        ctx.fillStyle = "blue";
+      }
+      ctx.fill();
+   		ctx.stroke();    	
+    }
+}
+
+
+function BezierCurve(cp1_x, cp1_y, cp2_x, cp2_y, sp_x, sp_y, ep_x, ep_y){
+  this.cp1_x = cp1_x;
+  this.cp1_y = cp1_y;
+  this.cp2_x = cp2_x;
+  this.cp2_y = cp2_y;
+  this.sp_x = sp_x;
+  this.sp_y = sp_y;
+  this.ep_x = ep_x;
+  this.ep_y = ep_y;
+  this.cp1_handle;
+  this.cp2_handle;
+  this.ep1_handle;
+  this.ep2_handle;
+  this.initialize = function(){
+
+      // draw bezier curve
+      ctx.moveTo(this.sp_x, this.sp_y);
+      ctx.bezierCurveTo(this.cp1_x, this.cp1_y, this.cp2_x, this.cp2_y, this.ep_x, this.ep_y);
+      ctx.stroke();
+
+      // draw handles for control points
+      var control_handle1 = new Handle('control',this.cp1_x,this.cp1_y);
+      var control_handle2 = new Handle('control',this.cp2_x,this.cp2_y);
+      var end_handle1 = new Handle('start',this.sp_x,this.sp_y);
+      var end_handle2 = new Handle('end',this.ep_x,this.ep_y); 
+      control_handle1.initialize();
+      control_handle2.initialize();
+      end_handle1.initialize();
+      end_handle2.initialize();
+      this.cp1_handle = control_handle1;
+      this.cp2_handle = control_handle2;
+      this.ep1_handle = end_handle1;
+      this.ep2_handle = end_handle2;
+  }
+}
+
+// draws the entire drawing depending on the data structure for clicks and their positions and if draggin was turned on
+function redraw(doPaint){
+  if (doPaint){
+
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clears the canvas
+
+    if (manipulate_shape == true){
+      for(var i=0; i < b_curves.length; i++) { 
+        b_curves[i].initialize();
+      } 
+    }
+
+    
+
+    if (create_shape == true) {
+      for (var i=0; i<shape_array.length; i++){
+        if (i ==0){
+          ctx.moveTo(shape_array[i].sp_x, shape_array[i].sp_y);
+        }
+        ctx.bezierCurveTo(shape_array[i].cp1_x, shape_array[i].cp1_y, shape_array[i].cp2_x, shape_array[i].cp2_y, shape_array[i].ep_x, shape_array[i].ep_y);
+      }
+      ctx.stroke();
+    }
+
+
+
+   
+
+
+  }
+
+}
+
+function handleSelected(handle_pos_x,handle_pos_y,click_pos_x, click_pos_y){
+  //console.log("handle " + handle);
+  // console.log("lower bound x: " + (handle_pos_x) - 10);
+  // console.log("uppper bound x: " + handle_pos_x + 10);
+  // console.log("lower bound y: " + handle_pos_y - 10);
+  // console.log("upper bound y: " + handle_pos_y + 10);
+  // console.log("click pos x: " + click_pos_x);
+  // console.log("click pos y: " + click_pos_y);
+  if ((handle_pos_x - 10) < (click_pos_x) && (handle_pos_x + 10) > (click_pos_x)){
+    if ((handle_pos_y - 10) < (click_pos_y) && (handle_pos_y + 10) > (click_pos_y)){
+      return true;
+    } else {
+      return false
+    }
+  } else {
+    return false;
+  }
+}
+
+function connectCurve(pointMoveFrom_x, pointMoveFrom_y, pointMoveTo_x, pointMoveTo_y){
+  console.log("con curve")
+  var handle_info_from = returnBezCurveIndex(pointMoveFrom_x, pointMoveFrom_y);
+  var handle_info_to = returnBezCurveIndex(pointMoveTo_x, pointMoveTo_y);
+  if ((handle_info_from.point_type == 'sp') && (handle_info_to.point_type == 'ep')){
+    b_curves[handle_info_from.cur_index].sp_x = b_curves[handle_info_to.cur_index].ep_x
+    b_curves[handle_info_from.cur_index].sp_y = b_curves[handle_info_to.cur_index].ep_y
+  } else if ((handle_info_from.point_type == 'sp') && (handle_info_to.point_type == 'sp')){
+    b_curves[handle_info_from.cur_index].sp_x =  b_curves[handle_info_to.cur_index].sp_x
+    b_curves[handle_info_from.cur_index].sp_y =  b_curves[handle_info_to.cur_index].sp_y 
+  } else if ((handle_info_from.point_type == 'ep') && (handle_info_to.point_type == 'ep')){
+    b_curves[handle_info_from.cur_index].ep_x =  b_curves[handle_info_to.cur_index].ep_x
+    b_curves[handle_info_from.cur_index].ep_y =  b_curves[handle_info_to.cur_index].ep_y 
+  } else if ((handle_info_from.point_type == 'ep') && (handle_info_to.point_type == 'sp')){
+    b_curves[handle_info_from.cur_index].ep_x =  b_curves[handle_info_to.cur_index].sp_x
+    b_curves[handle_info_from.cur_index].ep_y =  b_curves[handle_info_to.cur_index].sp_y 
+  }
+  else {
+    alert("choose a valid handle");
+  }
+  redraw(true);
+
+}
+
+function checkAllHandles(posX, posY){
+  for (var i=0;i<b_curves.length;i++){
+      cp1_hand = b_curves[i].cp1_handle;
+      cp2_hand = b_curves[i].cp2_handle;
+      ep1_hand = b_curves[i].ep1_handle;
+      ep2_hand = b_curves[i].ep2_handle;
+      if (handleSelected(cp1_hand.x, cp1_hand.y, posX, posY) == true){
+        cp1_hand.x = posX;
+        cp1_hand.y = posY;
+        b_curves[i].cp1_x = posX;
+        b_curves[i].cp1_y = posY;
+        console.log("yooo cp1")
+        break;
+      } else if (handleSelected(cp2_hand.x, cp2_hand.y, posX, posY) == true){
+        cp2_hand.x = posX;
+        cp2_hand.y = posY;
+        b_curves[i].cp2_x = posX;
+        b_curves[i].cp2_y = posY;
+        console.log("yooo cp2")
+        break;
+      } else if (handleSelected(ep1_hand.x, ep1_hand.y, posX, posY) == true){
+        ep1_hand.x = posX;
+        ep1_hand.y = posY;
+        b_curves[i].sp_x = posX;
+        b_curves[i].sp_y = posY;
+        console.log("yooo ep1")
+        break;
+      } else if (handleSelected(ep2_hand.x, ep2_hand.y, posX, posY) == true) {
+        ep2_hand.x = posX;
+        ep2_hand.y = posY;
+        b_curves[i].ep_x = posX;
+        b_curves[i].ep_y = posY;
+        console.log("yooo ep2")
+        break;
+      }
+  }
+}
+
+function returnBezCurveIndex(posX, posY){
+  var curveinfo;
+  for (var i=0;i<b_curves.length;i++){
+      cp1_hand = b_curves[i].cp1_handle;
+      cp2_hand = b_curves[i].cp2_handle;
+      ep1_hand = b_curves[i].ep1_handle;
+      ep2_hand = b_curves[i].ep2_handle;
+      if (handleSelected(cp1_hand.x, cp1_hand.y, posX, posY) == true){
+        curveinfo = new HandleInfo("cp1",i);
+        return curveinfo;
+      } else if (handleSelected(cp2_hand.x, cp2_hand.y, posX, posY) == true){
+         curveinfo = new HandleInfo("cp2",i);
+         return curveinfo;
+
+      } else if (handleSelected(ep1_hand.x, ep1_hand.y, posX, posY) == true){
+         curveinfo = new HandleInfo("sp",i);
+         return curveinfo;
+
+      } else if (handleSelected(ep2_hand.x, ep2_hand.y, posX, posY) == true) {
+         curveinfo = new HandleInfo("ep",i);
+         return curveinfo;
+      } 
+  }
+  curveinfo = new HandleInfo("error",-1);
+  return curveinfo;
+}
+
+function createShape(){
+  if (shape_array.length <= 0){
+    var create_curve = new BezierCurve(20, 100, 200, 100, 20, 20, 200, 20);
+    create_curve.initialize();
+    shape_array.push(create_curve);
+  }
+}
+
+function addEdge(pos_x, pos_y){
+  var last_curve_index = shape_array.length - 1;
+  src_x = shape_array[last_curve_index].ep_x; 
+  src_y = shape_array[last_curve_index].ep_y; 
+  dst_x = pos_x;
+  dst_y = pos_y;
+  mid_x = (dst_x + src_x)/2;
+  mid_y = (dst_y + src_y)/2;
+  cp1_x = (src_x + mid_x)/2;
+  cp1_y = (src_y + mid_y)/2;
+  cp2_x = (mid_x + dst_x)/2;
+  cp2_y = (mid_y + dst_y)/2;
+  var create_curve = new BezierCurve(cp1_x, cp1_y, cp2_x, cp2_y, -1, -1, dst_x, dst_y);
+  shape_array.push(create_curve);
+}
+
+function testHeart(){
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clears the canvas
+  ctx.beginPath();
+  ctx.moveTo(182,84);
+  ctx.bezierCurveTo(71,82,138,178,238,188);
+  ctx.bezierCurveTo(320,85,236,9,182,84);
+  ctx.stroke();
+}
+
+
+function testShape(){
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clears the canvas
+  ctx.beginPath();
+  ctx.moveTo(83,196);
+  ctx.bezierCurveTo(111,275,221,242,220,157);
+  ctx.bezierCurveTo(114,46,50,72,83,196);
+  ctx.stroke();
+}
+
+function testShape2(){
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clears the canvas
+  ctx.beginPath();
+  ctx.moveTo(61,88);
+  ctx.bezierCurveTo(111,81,261,57,292,84);
+  ctx.bezierCurveTo(298,112,313,183,332,221);
+  ctx.bezierCurveTo(396,242,363,211,452,285);
+  ctx.bezierCurveTo(324,331,356,311,275,276);
+  ctx.bezierCurveTo(199,265,124,266,49,291);
+  ctx.bezierCurveTo(37,219,41,136,61,88);
+  ctx.stroke();
+}
+
+
+function makeShape(){
+  shape_array = [];	
+  first = b_curves[0];
+  shape_array.push(first);
+  for (var i=1;i<b_curves.length;i++){
+    var next_c_ind = getConnectedCurve(first.ep_x, first.ep_y);
+    console.log(next_c_ind);
+    if (next_c_ind < 0){
+      alert("shape not connected 1");
+      shape_connected = false;
+      return
+    } else{
+      shape_array.push(b_curves[next_c_ind]);
+      first = b_curves[next_c_ind]
+    }
+  }
+  if (!(shape_array[0].sp_x == shape_array[shape_array.length-1].ep_x) && (shape_array[0].sp_y == shape_array[shape_array.length-1].ep_y)) {
+    alert("shape not connected 2");
+    shape_connected = false;
+    return
+  }
+  shape_connected = true;
+
+}
+
+function getConnectedCurve(end_point_x, end_point_y){
+  for (var i=0; i<b_curves.length;i++){
+    console.log("b_curves[i].sp_x = " + b_curves[i].sp_x )
+    console.log("b_curves[i].sp_y = " + b_curves[i].sp_y )
+    console.log("end_point_x = " + end_point_x );
+    console.log("end_point_y = " + end_point_y );
+    if ((b_curves[i].sp_x == end_point_x) && (b_curves[i].sp_y == end_point_y)){
+      return i;
+    }
+  }
+
+  return -1;
+}
+
+function changeIconColour(element, switch_on){
+	if (switch_on == true) {
+		$(element).css("color", "red");
+	} else {
+		$(element).css("color", "black");
+	}
+	
+}
+
+
+function saveSTL( scene, name ){  
+  var exporter = new THREE.STLExporter();
+  var stlString = exporter.parse( scene );
+  
+  var blob = new Blob([stlString], {type: 'text/plain'});
+  
+  saveAs(blob, name + '.stl');
+}
+
+
+
+
+
+$('#canvas').mouseup(function (e){
+  mousedown = false;
+});
+
+$('#canvas').mousedown(function(e){
+    mousedown = true;
+    curr_posX = e.pageX/1.3
+    curr_posY = e.pageY - this.offsetTop;
+    console.log("curr_posX "+curr_posX);
+    console.log("curr_posY "+curr_posY);
+
+    if (connect_curve == true && connect_1_selected == false && connect_2_selected == false) {
+      console.log("con_curve = true")
+      var hand_from = returnBezCurveIndex(curr_posX, curr_posY)
+      if (hand_from.point_type == 'ep' || hand_from.point_type == 'sp'){
+        connect_1_x = curr_posX;
+        connect_1_y = curr_posY;
+        connect_1_selected = true;
+      }
+    }
+
+    else if (connect_curve == true && connect_1_selected == true && connect_2_selected == false){
+      console.log("con_1_sel = true")
+      var hand_to = returnBezCurveIndex(curr_posX, curr_posY)
+      if (hand_to.point_type == 'ep' || hand_to.point_type == 'sp'){
+        connect_2_x = curr_posX;
+        connect_2_y = curr_posY;
+        connect_2_selected = true;
+      }
+    }
+
+    else if (connect_curve == true && connect_1_selected == true && connect_2_selected == true) {
+      console.log("con_2_sel = true")
+      connectCurve(connect_1_x, connect_1_y, connect_2_x, connect_2_y);
+      connect_1_selected = false;
+      connect_2_selected = false;
+    }
+
+    else if (create_shape == true && add_edge == false) {
+      createShape();
+    }
+
+    else if (create_shape == true && add_edge == true) {
+      addEdge(curr_posX, curr_posY);
+    }
+    
+});
+
+$('#canvas').mousemove(function(e) {
+  if (mousedown == true){
+  	//console.log("yoo")
+    curr_posX = e.pageX/1.3;
+    curr_posY = e.pageY - this.offsetTop;
+    checkAllHandles(curr_posX, curr_posY);
+
+    redraw(true);
+  }
+})
+$('.create-b-curve').click(function() {
+  var create_curve = new BezierCurve(20, 100, 200, 100, 20, 20, 200, 20);
+  create_curve.initialize();
+  b_curves.push(create_curve);
+})
+
+$('.con-b-curve').click(function() { 
+  if (connect_curve == false){
+    connect_curve = true;
+  } else{
+    connect_curve = false;
+  }
+  changeIconColour(this,connect_curve);
+});
+
+$('.create-shape').click(function() { 
+  if (create_shape == false){
+    create_shape = true;
+  } else{
+    create_shape = false;
+  }
+});
+
+$('.add-edge').click(function() { 
+  if (add_edge == false && create_shape ==false){
+    alert("select create shape first then select add edge")
+  } else if (add_edge == false && create_shape == true) {
+    add_edge = true
+  }
+  else if (add_edge == true && create_shape == true){
+    add_edge = false;
+  }
+});
+
+$('.create-shape').click(function() { 
+  if (create_shape == false && manipulate_shape == true){
+    create_shape = true;
+    manipulate_shape = false;
+
+    makeShape();
+    createHeartShape(shape_array);
+    redraw(true);
+  } 
+  changeIconColour(this,create_shape);
+});
+
+$('.manipulate-shape').click(function() { 
+  if (create_shape == true && manipulate_shape == false){
+    create_shape = false;
+    manipulate_shape = true;
+    redraw(true);
+  } 
+  changeIconColour(this,manipulate_shape);
+});
+
+$('.clear-screen').click(function() { 
+	b_curves = [];
+	shape_array = [];
+   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clears the canvas
+   create_shape = false;
+
+	manipulate_shape = true;
+});
+
+$('.download-stl').click(function () {
+	saveSTL(scene, "test_stl");
+});
+
+
+
+
+</script> 

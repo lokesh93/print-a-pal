@@ -1,0 +1,33 @@
+<style>
+	.add-style{
+		border-radius:10px;
+		border-style: solid;
+		padding: 10px;
+		margin:30px;
+	}
+
+	input{
+		width: 50%;
+		border-radius: 10px;
+		border-style: solid;
+		padding: 10px;
+	}
+</style>
+<div style="text-align:center;">
+<h1>Sign up</h1>
+<div style="border:solid;border-radius:20px;width:60%;margin:0% 20%;padding:3% 0%">
+
+<%= form_for :user, url: '/users' do |f| %>
+
+ <h3>Name: </h3><%= f.text_field :name %>
+ <h3>Email: </h3> <%= f.text_field :email %>
+ <h3>Password: </h3><%= f.password_field :password %>
+ <h3>Password Confirmation: </h3><%= f.password_field :password_confirmation %>
+  <%= f.submit "Submit", :class => 'btn-success add-style' %>
+
+	</div>
+</div>
+
+<% end %>
+
+<%= link_to 'Back', users_path %>

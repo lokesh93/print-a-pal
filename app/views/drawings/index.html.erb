@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1 style="text-align:center">Your Drawings</h1>
+
+<div class="table-dashboard">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Drawing</th>
+        <th></th>
+        <th></th>
+        <th>User</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @drawings.each do |drawing| %>
+        <tr>
+          <td><%= drawing.id %></td>
+          <td><%= link_to 'Show', drawing %></td>
+          <td><%= link_to 'Delete', drawing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= drawing.user_id %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+<div style="text-align:center;font-size:24px;"> 
+<%= render 'form' %>
+</div>

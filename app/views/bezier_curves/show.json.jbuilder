@@ -1,0 +1,1 @@
+json.partial! "bezier_curves/bezier_curf", bezier_curf: @bezier_curf

@@ -1,0 +1,53 @@
+<!-- <h1>New Draw</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', draws_path %> -->
+
+<style>
+ body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: white;
+    background-color: #333333;
+    text-align: center;
+ }
+ input {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: 2em;
+    border-radius: 10px;
+    border-style: none;
+    color: black;
+ }
+ </style>
+<h1> ************************************* </h1>
+<h1>Sign Up</h1>
+
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <p class="button"><%= f.submit %></p>
+<% end %>
+
